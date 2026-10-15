@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Sign In / Create Account — EV Yatra</title>
+  <meta name="description" content="Sign in or create your account on EV Yatra Smart EV Grid Platform" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0F19'/><circle cx='32' cy='32' r='26' fill='%2300D4AA'/><path d='M34 14 L22 34 L31 34 L30 50 L42 30 L33 30 Z' fill='%23041318'/></svg>" />
+  <style>
+    body.auth-page-body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #0b0f19;
+      background-image:
+        radial-gradient(at 15% 15%, rgba(0, 212, 170, 0.08) 0px, transparent 50%),
+        radial-gradient(at 85% 80%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 1.5rem;
+    }
+
+    .auth-page-container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(16px);
+    }
+
+    .auth-nav-top {
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .back-home-link:hover {
+      color: #00d4aa;
+    }
+
+    .auth-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .brand-gradient-logo {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .brand-gradient-logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 6px 16px rgba(0, 212, 170, 0.35));
+    }
+
+    .auth-page-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .auth-page-subtitle {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin: 0.2rem 0 0 0;
+    }
+
+    /* Mode Tabs */
+    .auth-mode-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    .auth-mode-tab {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.6rem;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .auth-mode-tab.active {
+      background: linear-gradient(135deg, #00d4aa, #0ea5e9);
+      color: #041318;
+      box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+    }
+
+    /* Social Buttons Stack */
+    .auth-oauth-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      width: 100%;
+    }
+
+    .oauth-pill-btn {
+      width: 100%;
+      height: 46px;
+      border-radius: 12px;
+      background: #181f2e;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      box-sizing: border-box;
+      padding: 0 1rem;
+    }
+
+    .oauth-pill-btn:hover {
+      background: #222b3d;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .oauth-pill-btn.apple-btn {
+      background: #ffffff;
+      color: #0b0f19;
+      border-color: #ffffff;
+    }
+
+    .oauth-pill-btn.apple-btn:hover {
+      background: #f1f5f9;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.18);
+    }
+
+    .oauth-pill-icon {
+      position: absolute;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+    }
+
+    .oauth-pill-text {
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    /* Divider */
+    .auth-divider-wrap {
+      display: flex;
+      align-items: center;
+      margin: 1.25rem 0;
+      width: 100%;
+    }
+
+    .auth-divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .auth-divider-label {
+      padding: 0 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Form Fields */
+    .auth-form-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      width: 100%;
+    }
+
+    .auth-field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .auth-field-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    .auth-label-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .auth-sub-link {
+      color: #38bdf8;
+      font-size: 0.78rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .auth-sub-link:hover {
+      text-decoration: underline;
+    }
+
+    .auth-pill-input {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 0.92rem;
+      font-family: inherit;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .auth-pill-input::placeholder {
+      color: #64748b;
+    }
+
+    .auth-pill-input:focus {
+      border-color: #00d4aa;
+      background: #151e30;
+      box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+    }
+
+    .auth-input-eye-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .auth-eye-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .auth-eye-toggle:hover {
+      color: #ffffff;
+    }
+
+    /* Main Submit Button */
+    .auth-main-submit-btn {
+      width: 100%;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #00d4aa, #0ea5e9);
+      border: none;
+      color: #041318;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 20px rgba(0, 212, 170, 0.3);
+    }
+
+    .auth-main-submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba(0, 212, 170, 0.45);
+    }
+
+    .auth-main-submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* Mode Switcher Link */
+    .auth-toggle-note {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .auth-toggle-link {
+      color: #00d4aa;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      margin-left: 0.35rem;
+    }
+
+    /* Modal Backdrop */
+    .account-picker-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1rem;
+    }
+
+    .account-picker-card {
+      background: #141b29;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 1.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .picker-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #ffffff;
+      padding: 0.8rem 1.35rem;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 212, 170, 0.35);
+      z-index: 10000;
+      display: none;
+    }
+
+    /* Login Method Sub-Toggle (Password vs 6-Digit OTP) */
+    .login-method-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-method-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.45rem 0.5rem;
+      border-radius: 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .login-method-btn.active {
+      background: rgba(0, 212, 170, 0.16);
+      color: #00d4aa;
+      border: 1px solid rgba(0, 212, 170, 0.35);
+    }
+
+    /* 6-Digit OTP Boxes */
+    .otp-digits-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .otp-digit-box {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #0f172a;
+      border: 1.5px solid rgba(0, 212, 170, 0.3);
+      color: #00d4aa;
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', monospace;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .otp-digit-box:focus {
+      border-color: #00d4aa;
+      background: #152238;
+      box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .otp-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+    }
+
+    /* Live SMS / Email OTP Push Notification Banner */
+    .otp-push-banner {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 430px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98));
+      border: 1.5px solid #00d4aa;
+      border-radius: 16px;
+      padding: 0.9rem 1.1rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 212, 170, 0.25);
+      z-index: 10005;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      animation: slideDownOtp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideDownOtp {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+<body class="auth-page-body">
+
+  <!-- Live SMS / Email OTP Push Notification Banner -->
+  <div id="otpPushBanner" class="otp-push-banner">
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,212,170,0.15);border:1px solid rgba(0,212,170,0.4);display:flex;align-items:center;justify-content:center;color:#00d4aa;font-size:1.1rem;flex-shrink:0;">
+        <i class="fa-solid fa-comment-sms"></i>
+      </div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#00d4aa;">
+          EV-YATRA SECURITY OTP • NOW
+        </div>
+        <div style="font-size:0.84rem;color:#e2e8f0;margin-top:2px;">
+          Your verification code is <strong id="otpPushCodeText" style="font-size:1.05rem;color:#fff;letter-spacing:2px;background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:6px;">------</strong>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.4rem;">
+      <button type="button" id="btnAutoFillOtp" style="background:linear-gradient(135deg,#00d4aa,#0ea5e9);border:none;color:#041318;font-weight:800;font-size:0.75rem;padding:0.45rem 0.75rem;border-radius:8px;cursor:pointer;white-space:nowrap;">
+        Auto-Fill
+      </button>
+      <button type="button" onclick="document.getElementById('otpPushBanner').style.display='none'" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:0.95rem;padding:4px;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="auth-nav-top">
+    <a href="/" class="back-home-link">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back to EV Yatra Live Map</span>
+    </a>
+  </div>
+
+  <div class="auth-page-container">
+    <div class="auth-header-row">
+      <div class="brand-gradient-logo">
+        <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoFluidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D4AA" />
+              <stop offset="100%" stop-color="#0EA5E9" />
+            </linearGradient>
+          </defs>
+          <path d="M23 4C14.7 4 8 10.7 8 19C8 28.5 20.3 39.8 21.8 41.2C22.5 41.8 23.5 41.8 24.2 41.2C25.7 39.8 38 28.5 38 19C38 10.7 31.3 4 23 4Z" fill="url(#logoFluidGrad)" />
+          <path d="M24.5 12L17.5 22H23L21.5 32L28.5 22H23L24.5 12Z" fill="#041318" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="auth-page-title" id="pageAuthTitle">Sign In</h1>
+        <p class="auth-page-subtitle" id="pageAuthSubtitle">Access Pan-India EV Charging &amp; 30-Min Slot Lock</p>
+      </div>
+    </div>
+
+    <!-- Mode Switcher Tabs -->
+    <div class="auth-mode-tabs">
+      <button type="button" class="auth-mode-tab active" id="tabLoginBtn" onclick="switchAuthMode('login')">Sign In</button>
+      <button type="button" class="auth-mode-tab" id="tabSignupBtn" onclick="switchAuthMode('signup')">Create Account</button>
+    </div>
+
+    <!-- 1. OAuth Buttons Stack (Real Apple ID & Google) -->
+    <div class="auth-oauth-stack">
+      <!-- Continue with Apple ID -->
+      <button type="button" class="oauth-pill-btn apple-btn" id="btnAppleAuth">
+        <span class="oauth-pill-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#0b0f19">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.66c.62-.75 1.04-1.8 1.01-2.85-.92.04-2.07.62-2.73 1.38-.58.66-1.1 1.72-1.03 2.76 1.03.08 2.12-.55 2.75-1.29z"/>
+          </svg>
+        </span>
+        <span class="oauth-pill-text">Continue with Apple ID</span>
+      </button>
+
+      <!-- Continue with Google -->
+      <button type="button" class="oauth-pill-btn" id="btnGoogleAuth">
+        <span class="oauth-pill-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+        </span>
+        <span class="oauth-pill-text">Continue with Google</span>
+      </button>
+    </div>
+
+    <!-- 2. OR Divider -->
+    <div class="auth-divider-wrap">
+      <div class="auth-divider-line"></div>
+      <span class="auth-divider-label" id="dividerLabelText">OR SIGN IN WITH PASSWORD / OTP</span>
+      <div class="auth-divider-line"></div>
+    </div>
+
+    <!-- 3. Form -->
+    <form id="standaloneAuthForm" class="auth-form-body">
+      <!-- Login Sub-Method Switch (Password vs 6-Digit OTP) -->
+      <div class="login-method-switch" id="loginMethodSwitch">
+        <button type="button" class="login-method-btn active" id="btnMethodPassword" onclick="setLoginSubMethod('password')">
+          <i class="fa-solid fa-lock"></i> Password
+        </button>
+        <button type="button" class="login-method-btn" id="btnMethodOtp" onclick="setLoginSubMethod('otp')">
+          <i class="fa-solid fa-shield-halved"></i> 6-Digit OTP
+        </button>
+      </div>
+
+      <!-- Full Name (Visible in Sign Up mode) -->
+      <div class="auth-field-row" id="rowNameField" style="display: none;">
+        <label class="auth-field-label" for="inputName">Full Name</label>
+        <input type="text" id="inputName" class="auth-pill-input" placeholder="Enter your full name" autocomplete="name" />
+      </div>
+
+      <!-- Email / Mobile Field -->
+      <div class="auth-field-row">
+        <label class="auth-field-label" for="inputEmail" id="lblIdentifier">Email or 10-Digit Mobile Number</label>
+        <input type="text" id="inputEmail" class="auth-pill-input" placeholder="you@domain.com or +91 98765 43210" required autocomplete="username" />
+      </div>
+
+      <!-- Phone Field (Visible in Sign Up mode) -->
+      <div class="auth-field-row" id="rowPhoneField" style="display: none;">
+        <label class="auth-field-label" for="inputPhone">Mobile Number</label>
+        <input type="tel" id="inputPhone" class="auth-pill-input" placeholder="+91 98765 43210" autocomplete="tel" />
+      </div>
+
+      <!-- Password Field -->
+      <div class="auth-field-row" id="rowPasswordField">
+        <div class="auth-label-flex">
+          <label class="auth-field-label" for="inputPassword" id="lblPassword">Password</label>
+          <div style="display:flex;gap:0.75rem;">
+            <a href="#" class="auth-sub-link" id="linkQuickOtp" onclick="event.preventDefault(); setLoginSubMethod('otp');">Use OTP Instead</a>
+            <a href="#" class="auth-sub-link" id="linkForgotPassword" onclick="event.preventDefault(); openResetPasswordModal();">Forgot password?</a>
+          </div>
+        </div>
+        <div class="auth-input-eye-wrap">
+          <input type="password" id="inputPassword" class="auth-pill-input" placeholder="Enter your password (min 6 chars)" autocomplete="current-password" />
+          <button type="button" class="auth-eye-toggle" id="btnTogglePasswordEye" title="Show/Hide Password">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6-Digit OTP Verification Section (Visible in OTP mode after sending OTP) -->
+      <div class="auth-field-row" id="rowOtpVerification" style="display: none;">
+        <div class="auth-label-flex">
+          <label class="auth-field-label">Enter 6-Digit Verification OTP</label>
+          <span id="otpCountdownBadge" style="font-size:0.75rem;color:#00d4aa;font-weight:700;">05:00</span>
+        </div>
+        <div class="otp-digits-row" id="loginOtpDigitsContainer">
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="0" />
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="1" />
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="2" />
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="3" />
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="4" />
+          <input type="text" maxlength="1" inputmode="numeric" class="otp-digit-box" data-otp-idx="5" />
+        </div>
+        <div class="otp-meta-bar">
+          <span id="otpSentToHint">Code sent to your mobile/email</span>
+          <a href="#" class="auth-sub-link" onclick="event.preventDefault(); requestLoginOtp(true);">Resend OTP</a>
+        </div>
+      </div>
+
+      <!-- EV Model & Plate Fields (Visible in Sign Up mode) -->
+      <div id="rowVehicleField" style="display: none; grid-template-columns: 1fr 1fr; gap: 0.7rem;">
+        <div class="auth-field-row">
+          <label class="auth-field-label" for="inputVehicle">EV Model</label>
+          <input type="text" id="inputVehicle" class="auth-pill-input" placeholder="Tata Nexon EV Max" />
+        </div>
+        <div class="auth-field-row">
+          <label class="auth-field-label" for="inputVehicleNumber">License Plate</label>
+          <input type="text" id="inputVehicleNumber" class="auth-pill-input" placeholder="DL 01 EV 1234" style="text-transform:uppercase;" />
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="auth-main-submit-btn" id="btnContinueSubmit">
+        <i class="fa-solid fa-bolt"></i>
+        <span id="btnContinueText">Sign In to EV Yatra</span>
+      </button>
+    </form>
+
+    <!-- 4. Mode Switcher Link -->
+    <div class="auth-toggle-note">
+      <span id="txtTogglePrompt">Don't have an account?</span>
+      <a href="#" class="auth-toggle-link" id="linkToggleAuthMode">Create Account</a>
+    </div>
+  </div>
+
+  <!-- Real Apple ID & Google Sign-In Modal -->
+  <div id="accountPickerModal" class="account-picker-modal" style="display: none;">
+    <div class="account-picker-card">
+      <div class="picker-title">
+        <span id="pickerProviderTitle"><i class="fa-brands fa-apple"></i> Sign in with Apple ID</span>
+        <button type="button" onclick="closeAccountPicker()" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.1rem;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p id="oauthModalDescription" style="font-size:0.82rem;color:#94a3b8;margin:0;">
+        Enter your Apple ID credentials to sign in or link your EV Yatra account.
+      </p>
+
+      <form id="oauthCustomForm" style="display:flex;flex-direction:column;gap:0.8rem;">
+        <div class="auth-field-row">
+          <label class="auth-field-label" id="oauthEmailLabel" for="oauthEmailInput">Apple ID (iCloud or Email)</label>
+          <input type="email" id="oauthEmailInput" class="auth-pill-input" placeholder="name@icloud.com" required />
+        </div>
+        <div class="auth-field-row">
+          <label class="auth-field-label" for="oauthNameInput">Full Name (for new accounts)</label>
+          <input type="text" id="oauthNameInput" class="auth-pill-input" placeholder="Your Full Name" />
+        </div>
+        <div class="auth-field-row" id="oauthPasswordRow">
+          <label class="auth-field-label" id="oauthPassLabel" for="oauthPasswordInput">Password</label>
+          <input type="password" id="oauthPasswordInput" class="auth-pill-input" placeholder="Enter your account password" required />
+        </div>
+        <button type="submit" class="auth-main-submit-btn" id="oauthSubmitBtn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span id="oauthSubmitBtnText">Sign In with Apple ID</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Real OTP-Verified Password Reset Modal -->
+  <div id="resetPasswordModal" class="account-picker-modal" style="display: none;">
+    <div class="account-picker-card">
+      <div class="picker-title">
+        <span><i class="fa-solid fa-key" style="color:#00d4aa;"></i> Reset Password via OTP</span>
+        <button type="button" onclick="closeResetPasswordModal()" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.1rem;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p style="font-size:0.82rem;color:#94a3b8;margin:0;">
+        Enter your registered Email or Mobile Number to receive a 6-digit verification OTP and set a new password.
+      </p>
+      <form id="resetPasswordForm" style="display:flex;flex-direction:column;gap:0.8rem;">
+        <div class="auth-field-row">
+          <label class="auth-field-label" for="resetEmailInput">Registered Email or Mobile</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input type="text" id="resetEmailInput" class="auth-pill-input" placeholder="you@domain.com or +91 98765 43210" required style="flex:1;" />
+            <button type="button" id="btnSendResetOtp" onclick="sendResetPasswordOtp()" style="background:rgba(0,212,170,0.16);border:1px solid #00d4aa;color:#00d4aa;font-weight:700;font-size:0.78rem;padding:0 0.85rem;border-radius:10px;cursor:pointer;white-space:nowrap;">
+              Send OTP
+            </button>
+          </div>
+        </div>
+        <div class="auth-field-row" id="resetOtpRow" style="display:none;">
+          <label class="auth-field-label" for="resetOtpInput">6-Digit OTP Code</label>
+          <input type="text" id="resetOtpInput" maxlength="6" inputmode="numeric" class="auth-pill-input" placeholder="Enter 6-digit OTP" style="letter-spacing:4px;font-weight:800;color:#00d4aa;" />
+        </div>
+        <div class="auth-field-row">
+          <label class="auth-field-label" for="resetNewPassInput">New Password (min 6 chars)</label>
+          <input type="password" id="resetNewPassInput" class="auth-pill-input" placeholder="Enter new password" required />
+        </div>
+        <button type="submit" class="auth-main-submit-btn">
+          <i class="fa-solid fa-check-circle"></i>
+          <span>Verify OTP &amp; Update Password</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div id="toastPopup" class="toast-popup"></div>
+
+  <script>
+    let currentMode = 'login';
+    let loginSubMethod = 'password'; // 'password' | 'otp'
+    let otpStepSent = false;
+    let otpTimerInterval = null;
+    let activeOAuthProvider = 'apple';
+
+    const pageAuthTitle = document.getElementById('pageAuthTitle');
+    const pageAuthSubtitle = document.getElementById('pageAuthSubtitle');
+    const tabLoginBtn = document.getElementById('tabLoginBtn');
+    const tabSignupBtn = document.getElementById('tabSignupBtn');
+    const form = document.getElementById('standaloneAuthForm');
+    const inputEmail = document.getElementById('inputEmail');
+    const inputPassword = document.getElementById('inputPassword');
+    const inputName = document.getElementById('inputName');
+    const inputPhone = document.getElementById('inputPhone');
+    const inputVehicle = document.getElementById('inputVehicle');
+    const inputVehicleNumber = document.getElementById('inputVehicleNumber');
+    const rowNameField = document.getElementById('rowNameField');
+    const rowPhoneField = document.getElementById('rowPhoneField');
+    const rowPasswordField = document.getElementById('rowPasswordField');
+    const rowOtpVerification = document.getElementById('rowOtpVerification');
+    const rowVehicleField = document.getElementById('rowVehicleField');
+    const loginMethodSwitch = document.getElementById('loginMethodSwitch');
+    const btnContinueSubmit = document.getElementById('btnContinueSubmit');
+    const btnContinueText = document.getElementById('btnContinueText');
+    const txtTogglePrompt = document.getElementById('txtTogglePrompt');
+    const linkToggleAuthMode = document.getElementById('linkToggleAuthMode');
+    const btnTogglePasswordEye = document.getElementById('btnTogglePasswordEye');
+
+    function showToast(msg) {
+      const t = document.getElementById('toastPopup');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 4000);
+    }
+
+    // Wire 6-digit OTP box auto-advance and paste
+    const otpBoxes = Array.from(document.querySelectorAll('#loginOtpDigitsContainer .otp-digit-box'));
+    otpBoxes.forEach((box, idx) => {
+      box.addEventListener('input', (e) => {
+        const val = e.target.value.replace(/\D/g, '');
+        e.target.value = val.slice(-1);
+        if (val && idx < otpBoxes.length - 1) {
+          otpBoxes[idx + 1].focus();
+        }
+      });
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !box.value && idx > 0) {
+          otpBoxes[idx - 1].focus();
+        }
+      });
+      box.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pasted = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+        pasted.split('').forEach((ch, i) => {
+          if (otpBoxes[i]) otpBoxes[i].value = ch;
+        });
+        if (pasted.length === 6) otpBoxes[5].focus();
+      });
+    });
+
+    function getEnteredLoginOtp() {
+      return otpBoxes.map(b => b.value.trim()).join('');
+    }
+
+    function fillLoginOtpBoxes(code) {
+      const digits = String(code || '').replace(/\D/g, '').slice(0, 6);
+      digits.split('').forEach((ch, i) => {
+        if (otpBoxes[i]) otpBoxes[i].value = ch;
+      });
+    }
+
+    function showOtpPushNotification(code, targetBoxType) {
+      const banner = document.getElementById('otpPushBanner');
+      const codeEl = document.getElementById('otpPushCodeText');
+      const autoBtn = document.getElementById('btnAutoFillOtp');
+      codeEl.innerText = code;
+      banner.style.display = 'flex';
+      autoBtn.onclick = () => {
+        if (targetBoxType === 'reset') {
+          const resetInp = document.getElementById('resetOtpInput');
+          if (resetInp) resetInp.value = code;
+        } else {
+          fillLoginOtpBoxes(code);
+        }
+        banner.style.display = 'none';
+        showToast('6-Digit OTP auto-filled!');
+      };
+    }
+
+    function startOtpCountdown(seconds) {
+      if (otpTimerInterval) clearInterval(otpTimerInterval);
+      let remaining = seconds;
+      const badge = document.getElementById('otpCountdownBadge');
+      const tick = () => {
+        const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+        const s = String(remaining % 60).padStart(2, '0');
+        if (badge) badge.innerText = `${m}:${s}`;
+        if (remaining <= 0) {
+          clearInterval(otpTimerInterval);
+          if (badge) badge.innerText = 'Expired';
+        }
+        remaining--;
+      };
+      tick();
+      otpTimerInterval = setInterval(tick, 1000);
+    }
+
+    function setLoginSubMethod(method) {
+      loginSubMethod = method;
+      otpStepSent = false;
+      document.getElementById('btnMethodPassword').classList.toggle('active', method === 'password');
+      document.getElementById('btnMethodOtp').classList.toggle('active', method === 'otp');
+
+      if (method === 'otp') {
+        rowPasswordField.style.display = 'none';
+        rowOtpVerification.style.display = 'none';
+        inputPassword.required = false;
+        btnContinueText.innerText = 'Send 6-Digit OTP';
+      } else {
+        rowPasswordField.style.display = 'flex';
+        rowOtpVerification.style.display = 'none';
+        inputPassword.required = true;
+        btnContinueText.innerText = 'Sign In to EV Yatra';
+      }
+    }
+
+    async function requestLoginOtp(isResend = false) {
+      const identifier = inputEmail.value.trim();
+      if (!identifier) {
+        showToast('Please enter your Email Address or 10-digit Mobile Number first.');
+        inputEmail.focus();
+        return;
+      }
+      btnContinueSubmit.disabled = true;
+      btnContinueText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending 6-Digit OTP...';
+
+      try {
+        const res = await fetch('/api/auth/send-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, purpose: 'login' })
+        });
+        const data = await res.json();
+        btnContinueSubmit.disabled = false;
+        if (data.success) {
+          otpStepSent = true;
+          rowOtpVerification.style.display = 'flex';
+          document.getElementById('otpSentToHint').innerText = `OTP sent to ${identifier}`;
+          btnContinueText.innerText = 'Verify 6-Digit OTP & Sign In';
+          otpBoxes.forEach(b => b.value = '');
+          otpBoxes[0].focus();
+          startOtpCountdown(data.expires_in_seconds || 300);
+          if (data.otp_code) {
+            showOtpPushNotification(data.otp_code, 'login');
+          }
+          showToast(isResend ? 'New 6-digit OTP sent!' : data.message);
+        } else {
+          btnContinueText.innerText = 'Send 6-Digit OTP';
+          showToast(data.error || 'Could not send OTP.');
+        }
+      } catch (err) {
+        btnContinueSubmit.disabled = false;
+        btnContinueText.innerText = 'Send 6-Digit OTP';
+        showToast('Network error while sending OTP.');
+      }
+    }
+
+    function switchAuthMode(mode) {
+      currentMode = mode;
+      if (mode === 'signup') {
+        tabLoginBtn.classList.remove('active');
+        tabSignupBtn.classList.add('active');
+        pageAuthTitle.innerText = 'Create Account';
+        pageAuthSubtitle.innerText = 'Register your EV profile on EV Yatra';
+        loginMethodSwitch.style.display = 'none';
+        rowNameField.style.display = 'flex';
+        rowPhoneField.style.display = 'flex';
+        rowPasswordField.style.display = 'flex';
+        rowOtpVerification.style.display = 'none';
+        rowVehicleField.style.display = 'grid';
+        inputName.required = true;
+        inputPhone.required = true;
+        inputPassword.required = true;
+        btnContinueText.innerText = 'Create Account';
+        txtTogglePrompt.innerText = 'Already have an account?';
+        linkToggleAuthMode.innerText = 'Sign In';
+        inputName.focus();
+      } else {
+        tabSignupBtn.classList.remove('active');
+        tabLoginBtn.classList.add('active');
+        pageAuthTitle.innerText = 'Sign In';
+        pageAuthSubtitle.innerText = 'Access Pan-India EV Charging & 30-Min Slot Lock';
+        loginMethodSwitch.style.display = 'grid';
+        rowNameField.style.display = 'none';
+        rowPhoneField.style.display = 'none';
+        rowVehicleField.style.display = 'none';
+        inputName.required = false;
+        inputPhone.required = false;
+        setLoginSubMethod(loginSubMethod);
+        txtTogglePrompt.innerText = "Don't have an account?";
+        linkToggleAuthMode.innerText = 'Create Account';
+      }
+    }
+
+    if (new URLSearchParams(window.location.search).get('mode') === 'signup') {
+      switchAuthMode('signup');
+    }
+
+    linkToggleAuthMode.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchAuthMode(currentMode === 'login' ? 'signup' : 'login');
+    });
+
+    btnTogglePasswordEye.addEventListener('click', () => {
+      const isPass = inputPassword.type === 'password';
+      inputPassword.type = isPass ? 'text' : 'password';
+      btnTogglePasswordEye.innerHTML = isPass ? '<i class="fa-regular fa-eye-slash"></i>' : '<i class="fa-regular fa-eye"></i>';
+    });
+
+    // Form submission (Real Sign In with Password, Sign In with 6-Digit OTP, or Sign Up)
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = inputEmail.value.trim();
+
+      // Handle 6-Digit OTP Login Mode
+      if (currentMode === 'login' && loginSubMethod === 'otp') {
+        if (!otpStepSent) {
+          await requestLoginOtp(false);
+          return;
+        }
+        const otpCode = getEnteredLoginOtp();
+        if (otpCode.length !== 6) {
+          showToast('Please enter the complete 6-digit OTP code.');
+          return;
+        }
+        btnContinueSubmit.disabled = true;
+        btnContinueText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying OTP...';
+        try {
+          const res = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier: email, otp_code: otpCode, purpose: 'login' })
+          });
+          const data = await res.json();
+          if (data.success && data.user) {
+            localStorage.setItem('ev_yatra_auth_user', JSON.stringify(data.user));
+            showToast('OTP Verified! Signed in as ' + data.user.name);
+            setTimeout(() => { window.location.href = '/'; }, 600);
+          } else {
+            btnContinueSubmit.disabled = false;
+            btnContinueText.innerText = 'Verify 6-Digit OTP & Sign In';
+            showToast(data.error || 'Invalid OTP code.');
+          }
+        } catch (err) {
+          btnContinueSubmit.disabled = false;
+          btnContinueText.innerText = 'Verify 6-Digit OTP & Sign In';
+          showToast('Network error verifying OTP.');
+        }
+        return;
+      }
+
+      const password = inputPassword.value.trim();
+      if (!email || !password) {
+        showToast('Please enter your email/phone and password.');
+        return;
+      }
+
+      if (currentMode === 'signup') {
+        const name = inputName.value.trim();
+        const phone = inputPhone.value.trim();
+        const vehicle = inputVehicle.value.trim() || 'Tata Nexon EV Max';
+        const vehicleNumber = (inputVehicleNumber.value || '').trim().toUpperCase() || 'IND EV 2026';
+
+        if (!name || !phone) {
+          showToast('Please enter your full name and mobile number.');
+          return;
+        }
+        if (password.length < 6) {
+          showToast('Password must be at least 6 characters.');
+          inputPassword.focus();
+          return;
+        }
+
+        btnContinueSubmit.disabled = true;
+        btnContinueText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
+
+        try {
+          const res = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name,
+              email,
+              phone,
+              password,
+              vehicle_model: vehicle,
+              vehicle_number: vehicleNumber
+            })
+          });
+          const data = await res.json();
+          if (data.success && data.user) {
+            localStorage.setItem('ev_yatra_auth_user', JSON.stringify(data.user));
+            showToast('Account created! Welcome, ' + data.user.name + '!');
+            setTimeout(() => { window.location.href = '/'; }, 650);
+          } else {
+            btnContinueSubmit.disabled = false;
+            btnContinueText.innerText = 'Create Account';
+            showToast(data.error || 'Registration failed.');
+          }
+        } catch (err) {
+          btnContinueSubmit.disabled = false;
+          btnContinueText.innerText = 'Create Account';
+          showToast('Network error during registration.');
+        }
+        return;
+      }
+
+      // Sign In with Password Mode
+      btnContinueSubmit.disabled = true;
+      btnContinueText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing In...';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email_or_phone: email, password })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          localStorage.setItem('ev_yatra_auth_user', JSON.stringify(data.user));
+          showToast('Signed in as ' + data.user.name + '! Redirecting...');
+          setTimeout(() => { window.location.href = '/'; }, 600);
+        } else {
+          btnContinueSubmit.disabled = false;
+          btnContinueText.innerText = 'Sign In to EV Yatra';
+          showToast(data.error || 'Incorrect email/phone or password.');
+        }
+      } catch (err) {
+        btnContinueSubmit.disabled = false;
+        btnContinueText.innerText = 'Sign In to EV Yatra';
+        showToast('Network error during login.');
+      }
+    });
+
+    // Real Apple ID & Google OAuth Flow
+    function openOAuthModal(provider) {
+      activeOAuthProvider = provider.toLowerCase();
+      const modal = document.getElementById('accountPickerModal');
+      const title = document.getElementById('pickerProviderTitle');
+      const desc = document.getElementById('oauthModalDescription');
+      const emailLabel = document.getElementById('oauthEmailLabel');
+      const emailInput = document.getElementById('oauthEmailInput');
+      const passLabel = document.getElementById('oauthPassLabel');
+      const submitBtnText = document.getElementById('oauthSubmitBtnText');
+
+      if (activeOAuthProvider === 'apple') {
+        title.innerHTML = `<i class="fa-brands fa-apple"></i> Sign in with Apple ID`;
+        desc.innerText = 'Enter your Apple ID email and password to sign in or create your linked EV Yatra account.';
+        emailLabel.innerText = 'Apple ID (iCloud or Email)';
+        emailInput.placeholder = 'yourname@icloud.com';
+        passLabel.innerText = 'Apple ID Password';
+        submitBtnText.innerText = 'Continue with Apple ID';
+      } else {
+        title.innerHTML = `<i class="fa-brands fa-google"></i> Sign in with Google`;
+        desc.innerText = 'Enter your Google Account email and password to sign in or link your EV Yatra account.';
+        emailLabel.innerText = 'Google Email Address';
+        emailInput.placeholder = 'yourname@gmail.com';
+        passLabel.innerText = 'Google Account Password';
+        submitBtnText.innerText = 'Continue with Google';
+      }
+
+      modal.style.display = 'flex';
+      emailInput.focus();
+    }
+
+    function closeAccountPicker() {
+      document.getElementById('accountPickerModal').style.display = 'none';
+    }
+
+    document.getElementById('oauthCustomForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('oauthEmailInput').value.trim();
+      const name = document.getElementById('oauthNameInput').value.trim() || email.split('@')[0];
+      const password = document.getElementById('oauthPasswordInput').value.trim();
+      const color = activeOAuthProvider === 'apple' ? '#0ea5e9' : '#4285F4';
+      const label = activeOAuthProvider === 'apple' ? 'Apple ID' : 'Google';
+      const endpoint = activeOAuthProvider === 'apple' ? '/api/auth/apple' : '/api/auth/google';
+
+      if (!email || !password || password.length < 4) {
+        showToast(`Please enter your ${label} email and valid password.`);
+        return;
+      }
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ provider: activeOAuthProvider, email, name, avatar_color: color, password })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          closeAccountPicker();
+          localStorage.setItem('ev_yatra_auth_user', JSON.stringify(data.user));
+          showToast(`Signed in as ${data.user.name} via ${label}!`);
+          setTimeout(() => { window.location.href = '/'; }, 650);
+        } else {
+          showToast(data.error || 'Authentication failed.');
+        }
+      } catch (err) {
+        showToast('Network error during authentication.');
+      }
+    });
+
+    document.getElementById('btnAppleAuth').addEventListener('click', () => openOAuthModal('apple'));
+    document.getElementById('btnGoogleAuth').addEventListener('click', () => openOAuthModal('google'));
+
+    // Real OTP-Verified Password Reset Flow
+    function openResetPasswordModal() {
+      const emailVal = inputEmail.value.trim();
+      if (emailVal) {
+        document.getElementById('resetEmailInput').value = emailVal;
+      }
+      document.getElementById('resetPasswordModal').style.display = 'flex';
+    }
+
+    function closeResetPasswordModal() {
+      document.getElementById('resetPasswordModal').style.display = 'none';
+    }
+
+    async function sendResetPasswordOtp() {
+      const identifier = document.getElementById('resetEmailInput').value.trim();
+      if (!identifier) {
+        showToast('Please enter your registered Email or Mobile Number.');
+        return;
+      }
+      const btn = document.getElementById('btnSendResetOtp');
+      btn.disabled = true;
+      btn.innerText = 'Sending...';
+      try {
+        const res = await fetch('/api/auth/send-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, purpose: 'reset' })
+        });
+        const data = await res.json();
+        btn.disabled = false;
+        btn.innerText = 'Resend OTP';
+        if (data.success) {
+          document.getElementById('resetOtpRow').style.display = 'flex';
+          document.getElementById('resetOtpInput').focus();
+          if (data.otp_code) {
+            showOtpPushNotification(data.otp_code, 'reset');
+          }
+          showToast(data.message);
+        } else {
+          showToast(data.error || 'Could not send reset OTP.');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerText = 'Send OTP';
+        showToast('Network error sending OTP.');
+      }
+    }
+
+    document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('resetEmailInput').value.trim();
+      const otp_code = document.getElementById('resetOtpInput').value.trim();
+      const new_password = document.getElementById('resetNewPassInput').value.trim();
+
+      if (!otp_code || otp_code.length !== 6) {
+        showToast('Please click "Send OTP" and enter the 6-digit OTP code first.');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, otp_code, new_password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          closeResetPasswordModal();
+          setLoginSubMethod('password');
+          inputEmail.value = email;
+          inputPassword.value = '';
+          inputPassword.focus();
+          showToast(data.message || 'Password updated! Please sign in.');
+        } else {
+          showToast(data.error || 'Could not reset password.');
+        }
+      } catch (err) {
+        showToast('Network error while resetting password.');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV YATRA - Building the Largest Network of EV Chargers in India</title>
+  <meta name="description" content="EV Yatra is India's leading EV charging network with 1,619+ charging stations, real-time bay telemetry, and guaranteed 30-minute slot lock booking." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B0F19'/><circle cx='32' cy='32' r='26' fill='%2300D4AA'/><path d='M34 14 L22 34 L31 34 L30 50 L42 30 L33 30 Z' fill='%23041318'/></svg>" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <!-- ================= Floating Glass Navbar ================= -->
+  <div class="floating-nav-wrapper">
+    <nav class="floating-navbar" aria-label="Main Navigation">
+      <!-- Brand Logo -->
+      <a href="/" class="nav-brand">
+        <div class="nav-logo-orb">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="nav-logo-text">
+          <span>EV</span>
+          <span class="logo-highlight">YATRA</span>
+          <span class="badge-pro">PRO</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links with Dropdowns -->
+      <ul class="nav-links">
+        <!-- Products -->
+        <li class="nav-item">
+          <a class="nav-link" href="#products">
+            <span>Products</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown">
+            <a href="#charger-finder" class="dropdown-item">
+              <i class="fa-solid fa-bolt"></i>
+              <div>
+                <strong>Highway DC Fast Hubs</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">60kW - 240kW ultra-fast guns</div>
+              </div>
+            </a>
+            <a href="#lock-engine" class="dropdown-item">
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <strong>30-Min Slot Lock Engine</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">Guaranteed reservation pass</div>
+              </div>
+            </a>
+            <a href="#products" class="dropdown-item">
+              <i class="fa-solid fa-house-chimney"></i>
+              <div>
+                <strong>Home Wallbox AC</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">7.4kW & 22kW smart chargers</div>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- Solutions -->
+        <li class="nav-item">
+          <a class="nav-link" href="#products">
+            <span>Solutions</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown">
+            <a href="#charger-finder" class="dropdown-item">
+              <i class="fa-solid fa-car-side"></i>
+              <div>
+                <strong>For EV Drivers</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">Hassle-free charging on highways</div>
+              </div>
+            </a>
+            <a href="#partner" class="dropdown-item">
+              <i class="fa-solid fa-building"></i>
+              <div>
+                <strong>Commercial Real Estate</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">Malls, hotels & tech parks</div>
+              </div>
+            </a>
+            <a href="#products" class="dropdown-item">
+              <i class="fa-solid fa-truck-fast"></i>
+              <div>
+                <strong>Fleet & Logistics</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">Dedicated commercial charging depot</div>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <!-- Partner With Us -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="openPartnerModal(); return false;">Partner With Us</a>
+        </li>
+
+        <!-- Add Station (Direct to Pilot Station Partner Portal) -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="openPilotDashboardModal('partner'); return false;">+ Add Station</a>
+        </li>
+
+        <!-- Discover -->
+        <li class="nav-item">
+          <a class="nav-link" href="#charger-finder">
+            <span>Discover</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown">
+            <a href="#charger-finder" class="dropdown-item">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <div>
+                <strong>Pan-India Grid Hubs</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">1,619+ verified nodes</div>
+              </div>
+            </a>
+            <a href="#charger-finder" class="dropdown-item" onclick="document.querySelector('[data-filter=villages]')?.click();">
+              <i class="fa-solid fa-wheat-awn"></i>
+              <div>
+                <strong>Rural Corridors & Villages</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">280+ remote town chargers</div>
+              </div>
+            </a>
+            <a href="#charger-finder" class="dropdown-item" onclick="openPilotDashboardModal('telemetry'); return false;">
+              <i class="fa-solid fa-user-astronaut"></i>
+              <div>
+                <strong>Pilot Mission Control</strong>
+                <div style="font-size: 0.75rem; color: #94a3b8;">EV Garage, Passes & Telemetry</div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Nav Actions Right -->
+      <div class="nav-actions">
+        <!-- Shop / Offers Button -->
+        <a href="#" class="btn-shop-offers" onclick="openOffersModal(); return false;">
+          <span>Shop</span>
+          <span>🛍️</span>
+          <span class="badge-tag-offers">Offers</span>
+        </a>
+
+        <!-- Find Charger Button -->
+        <a href="#charger-finder" class="btn-find-charger" title="Find Charging Stations Across India">
+          <span>Find Charger</span>
+          <i class="fa-solid fa-bolt" style="font-size: 0.78rem;"></i>
+        </a>
+
+        <!-- Pilot Account / Sign In / Alex Mission Control Button -->
+        <a href="#pilot-dashboard" id="navPilotBtn" class="btn-pilot-nav" title="Sign In or Open Pilot Mission Control">
+          <i class="fa-solid fa-circle-user" style="color: #ff5722;"></i>
+          <span id="navPilotText">Sign In</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="mobileMenuToggleBtn" class="mobile-menu-btn" onclick="toggleMobileNavDrawer()" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNavDrawer" class="mobile-nav-drawer hidden">
+      <div class="mobile-drawer-header">
+        <div class="nav-brand">
+          <div class="nav-logo-orb" style="width:32px;height:32px;font-size:0.95rem;"><i class="fa-solid fa-bolt"></i></div>
+          <span style="font-family:var(--font-heading);font-weight:800;font-size:1.15rem;color:#fff;">EV <span style="color:#ff5722;">YATRA</span></span>
+        </div>
+        <button type="button" class="drawer-close-btn" onclick="toggleMobileNavDrawer()">&times;</button>
+      </div>
+
+      <div class="mobile-drawer-links">
+        <a href="#charger-finder" class="drawer-link" onclick="toggleMobileNavDrawer()">
+          <i class="fa-solid fa-charging-station" style="color:#00d4aa;"></i>
+          <span>Find EV Chargers (1,619+ Hubs)</span>
+        </a>
+        <a href="#lock-engine" class="drawer-link" onclick="toggleMobileNavDrawer()">
+          <i class="fa-solid fa-lock" style="color:#ff5722;"></i>
+          <span>30-Min Slot Lock Engine</span>
+        </a>
+        <a href="#products" class="drawer-link" onclick="toggleMobileNavDrawer()">
+          <i class="fa-solid fa-cubes" style="color:#38bdf8;"></i>
+          <span>Products &amp; Hardware</span>
+        </a>
+        <a href="#" class="drawer-link" onclick="toggleMobileNavDrawer(); openPartnerModal(); return false;">
+          <i class="fa-solid fa-handshake" style="color:#f59e0b;"></i>
+          <span>Partner With Us / Franchise</span>
+        </a>
+        <a href="#" class="drawer-link" onclick="toggleMobileNavDrawer(); openPilotDashboardModal('partner'); return false;">
+          <i class="fa-solid fa-plus-circle" style="color:#10b981;"></i>
+          <span>+ Add Charging Station to Grid</span>
+        </a>
+        <a href="#" class="drawer-link" onclick="toggleMobileNavDrawer(); openOffersModal(); return false;">
+          <i class="fa-solid fa-tag" style="color:#ec4899;"></i>
+          <span>Shop &amp; EV Driver Passes 🛍️</span>
+        </a>
+        <a href="#" class="drawer-link" onclick="toggleMobileNavDrawer(); openPilotDashboardModal('telemetry'); return false;">
+          <i class="fa-solid fa-user-astronaut" style="color:#a855f7;"></i>
+          <span>Pilot Mission Control Dashboard</span>
+        </a>
+      </div>
+
+      <div class="mobile-drawer-footer">
+        <button type="button" class="btn-hero-primary" style="width:100%;height:44px;font-size:0.92rem;" onclick="toggleMobileNavDrawer(); openInPageAuthModal('login');">
+          <i class="fa-solid fa-circle-user"></i>
+          <span>Sign In / Create Account</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Hero Section ================= -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-media"></div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-container">
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-pill-badge">
+          <span class="pulse-dot"></span>
+          <span>Pan-India Smart EV Grid</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Building the largest network<br />
+          of <span class="highlight-word">EV chargers in India</span>
+        </h1>
+
+        <p class="hero-subheadline">
+          Reliable, fast and accessible charging — anywhere you go with guaranteed 30-minute slot lock exclusivity.
+        </p>
+
+        <div class="hero-cta-group">
+          <button type="button" class="btn-hero-primary" onclick="openPartnerModal()">
+            <span>Become a Partner</span>
+          </button>
+
+          <button type="button" class="btn-hero-secondary" onclick="openInPageAuthModal('signup')">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Sign Up / Apple ID</span>
+          </button>
+
+          <a href="#charger-finder" class="btn-hero-finder">
+            <i class="fa-solid fa-charging-station"></i>
+            <span>Find Charger ⚡</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Floating Metric Cards Stack -->
+      <div class="hero-metrics-stack">
+        <div class="metric-glass-card">
+          <div class="metric-val">1619+</div>
+          <div class="metric-label">Charging Hubs Across India</div>
+        </div>
+
+        <div class="metric-glass-card">
+          <div class="metric-val coral">1014+</div>
+          <div class="metric-label">Cities, Towns & Villages</div>
+        </div>
+
+        <div class="metric-glass-card">
+          <div class="metric-val green">100 Cr+</div>
+          <div class="metric-label">KM Powered (Zero Emissions)</div>
+        </div>
+
+        <div class="metric-glass-card">
+          <div class="metric-val" style="color: #38bdf8;">30-Min</div>
+          <div class="metric-label">Guaranteed Exclusive Slot Lock</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Partner Brands Section ================= -->
+  <section class="partners-section">
+    <div class="curved-wave-divider">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,60 L1200,120 L0,120 Z" class="shape-fill"></path>
+      </svg>
+    </div>
+
+    <div class="partners-container">
+      <h3 class="partners-title">
+        <span>We are loved by the largest EV names</span>
+        <span>🖤</span>
+      </h3>
+
+      <div class="partners-grid">
+        <div class="partner-brand-card tilted-left" title="Hyundai Motor India EV Partner">
+          <i class="fa-solid fa-car" style="color: #002c6c; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #002c6c;">HYUNDAI</div>
+            <div class="partner-logo-sub">IONIQ Grid</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card tilted-right" title="Adani Total Energies EV Grid">
+          <i class="fa-solid fa-bolt-lightning" style="color: #2563eb; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #1e3a8a;">adani</div>
+            <div class="partner-logo-sub">TotalEnergies</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card" title="Tata Power EZ Charge Grid Partner">
+          <i class="fa-solid fa-plug-circle-bolt" style="color: #0d9488; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #0f766e;">TATA POWER</div>
+            <div class="partner-logo-sub">EZ Charge</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card tilted-left" title="Statiq Network Peer">
+          <i class="fa-solid fa-circle-nodes" style="color: #ea580c; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #c2410c;">statiq</div>
+            <div class="partner-logo-sub">Roaming Grid</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card" title="ChargeZone Highway Fast Corridor">
+          <i class="fa-solid fa-gauge-high" style="color: #4f46e5; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #4338ca;">ChargeZone</div>
+            <div class="partner-logo-sub">Highway Ultra DC</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card tilted-right" title="Jio-bp pulse High-Speed Hubs">
+          <i class="fa-solid fa-atom" style="color: #059669; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #047857;">Jio-bp pulse</div>
+            <div class="partner-logo-sub">Expressways</div>
+          </div>
+        </div>
+
+        <div class="partner-brand-card" title="Ather Energy Fast Charging">
+          <i class="fa-solid fa-motorcycle" style="color: #e11d48; font-size: 1.3rem;"></i>
+          <div>
+            <div class="partner-logo-text" style="color: #be123c;">ATHER</div>
+            <div class="partner-logo-sub">Urban Grid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Connected Live EV Station Finder & Google Map Section ================= -->
+  <section class="finder-section" id="charger-finder">
+    <div class="finder-container">
+      <!-- Section Title & Pilot Mission Control Button -->
+      <div class="finder-header-row">
+        <div class="finder-titles">
+          <div class="section-badge">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <span>LIVE PAN-INDIA GOOGLE MAPS & TELEMETRY</span>
+          </div>
+          <h2>Find Charging Stations Across India</h2>
+          <p>All 1,619+ Pan-India Cities, Towns & Villages with real-time bay telemetry, turn-by-turn routing, and 30-minute lock.</p>
+        </div>
+
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;align-items:center;">
+          <!-- City, Town & Village Quick Selector -->
+          <select id="citySelect" class="city-selector-select" title="Jump to any City, Rural Town, or Village Corridor">
+            <option value="">📍 Select City, Town or Village...</option>
+            <optgroup label="🌾 Rural Towns &amp; Village Corridors">
+              <option value="27.5980,78.0520|Hathras">Hathras &amp; Sasni Villages (UP)</option>
+              <option value="29.0355,77.0745|Murthal">Murthal &amp; Gharaunda GT Road (HR)</option>
+              <option value="27.3910,75.9590|Shahpura">Shahpura &amp; Behror NH-48 (RJ)</option>
+              <option value="18.7546,73.4062|Lonavala">Lonavala &amp; Shirwal Villages (MH)</option>
+              <option value="12.6518,77.2089|Channapatna">Channapatna &amp; Mandya Rural (KA)</option>
+              <option value="17.1390,79.6230|Suryapet">Suryapet &amp; Choutuppal Villages (TS)</option>
+              <option value="17.3380,77.9040|Vikarabad">Vikarabad Ananthagiri Rural (TS)</option>
+              <option value="22.9920,72.3810|Sanand">Sanand &amp; Bavla Rural GIDC (GJ)</option>
+              <option value="12.6939,79.9757|Chengalpattu">Chengalpattu &amp; Melmaruvathur (TN)</option>
+              <option value="22.4350,87.8710|Kolaghat">Kolaghat &amp; Singur NH-16 Rural (WB)</option>
+              <option value="26.9260,81.1930|Barabanki">Barabanki &amp; Malihabad Rural (UP)</option>
+              <option value="23.2030,77.0840|Sehore">Sehore &amp; Phanda Gram (MP)</option>
+              <option value="31.5330,75.9110|Hoshiarpur">Hoshiarpur &amp; Phillaur Doaba (PB)</option>
+              <option value="20.1820,85.6160|Khurda">Khurda &amp; Pipili Artisan Village (OD)</option>
+              <option value="10.0680,76.6250|Kothamangalam">Kothamangalam High-Range (KL)</option>
+            </optgroup>
+            <optgroup label="🏙️ Major Metro &amp; Tier-1/2 Hubs">
+              <option value="28.6139,77.2090|Delhi">New Delhi / NCR</option>
+              <option value="19.0760,72.8777|Mumbai">Mumbai, Maharashtra</option>
+              <option value="12.9716,77.5946|Bengaluru">Bengaluru, Karnataka</option>
+              <option value="17.3850,78.4867|Hyderabad">Hyderabad, Telangana</option>
+              <option value="13.0827,80.2707|Chennai">Chennai, Tamil Nadu</option>
+              <option value="18.5204,73.8567|Pune">Pune, Maharashtra</option>
+              <option value="23.0225,72.5714|Ahmedabad">Ahmedabad, Gujarat</option>
+              <option value="22.5726,88.3639|Kolkata">Kolkata, West Bengal</option>
+              <option value="26.9124,75.7873|Jaipur">Jaipur, Rajasthan</option>
+              <option value="26.8467,80.9462|Lucknow">Lucknow, Uttar Pradesh</option>
+              <option value="30.7333,76.7794|Chandigarh">Chandigarh Tricity</option>
+              <option value="9.9312,76.2673|Kochi">Kochi, Kerala</option>
+              <option value="21.1702,72.8311|Surat">Surat, Gujarat</option>
+              <option value="22.7196,75.8577|Indore">Indore, Madhya Pradesh</option>
+              <option value="21.1458,79.0882|Nagpur">Nagpur, Maharashtra</option>
+              <option value="25.5941,85.1376|Patna">Patna, Bihar</option>
+              <option value="20.2961,85.8245|Bhubaneswar">Bhubaneswar, Odisha</option>
+              <option value="26.1445,91.7362|Guwahati">Guwahati, Assam</option>
+              <option value="15.2993,74.1240|Goa">Panaji / Goa</option>
+              <option value="31.1048,77.1734|Shimla">Shimla, Himachal Pradesh</option>
+            </optgroup>
+          </select>
+
+          <button type="button" class="btn-open-full-map" onclick="openPilotDashboardModal('telemetry')">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span>Pilot Mission Control</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode Switcher Tabs: Explorer vs Highway Trip Planner -->
+      <div class="finder-mode-tabs">
+        <button type="button" class="finder-mode-tab active" id="tabExplorerMode" onclick="switchFinderMode('explorer')">
+          <i class="fa-solid fa-map-pin"></i>
+          <span>Live Station Explorer</span>
+        </button>
+        <button type="button" class="finder-mode-tab" id="tabTripPlannerMode" onclick="switchFinderMode('planner')">
+          <i class="fa-solid fa-route"></i>
+          <span>EV Highway Trip Planner</span>
+          <span class="badge-tab-new">AI Corridor</span>
+        </button>
+      </div>
+
+      <!-- Mode 1: Explorer Control Bar -->
+      <div class="finder-control-bar" id="finderExplorerControls">
+        <div class="search-omnibox-wrap" style="position:relative;">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="homeSearchInput" class="search-omnibox-input" placeholder="Search any City, Town, Village or Station (e.g. Hathras, Murthal, Jaipur, Delhi, Mumbai, Bengaluru)..." autocomplete="off" />
+          <button type="button" id="clearSearchBtn" style="display:none;background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;padding:0 6px;" title="Clear Search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <button type="button" id="homeNearMeBtn" class="btn-near-me" title="Find Stations Near Your Live GPS Location">
+            <i class="fa-solid fa-crosshairs"></i>
+            <span>Near Me</span>
+          </button>
+          <!-- Live Search Autocomplete Dropdown -->
+          <div id="searchSuggestions" class="search-suggestions-box hidden"></div>
+        </div>
+
+        <div class="finder-filter-chips">
+          <button type="button" class="chip-btn active" data-filter="all">⚡ All Connectors</button>
+          <button type="button" class="chip-btn" data-filter="villages">🌾 Towns &amp; Villages</button>
+          <button type="button" class="chip-btn" data-filter="available">🟢 Available Now</button>
+          <button type="button" class="chip-btn" data-filter="fast-dc">⚡ Fast DC (&ge;50kW)</button>
+          <button type="button" class="chip-btn" data-filter="hyper">🚀 Hyperchargers (&ge;120kW)</button>
+          <button type="button" class="chip-btn" data-filter="ccs2">🔌 CCS-2</button>
+          <button type="button" class="chip-btn" data-filter="type2">🔌 Type 2 AC</button>
+          <button type="button" class="chip-btn" data-filter="amenities">☕ Dhabas &amp; Food</button>
+          <button type="button" class="chip-btn" data-filter="value">💰 Value (&le;₹18/kWh)</button>
+          <select id="operatorSelect" class="chip-select-filter" onchange="handleOperatorFilterChange(this.value)">
+            <option value="all">⚡ All EV Networks</option>
+            <option value="tata">Tata Power EZ Charge</option>
+            <option value="jio">Jio-BP pulse</option>
+            <option value="statiq">Statiq EV</option>
+            <option value="zeon">Zeon Charging</option>
+            <option value="ather">Ather Grid</option>
+            <option value="chargezone">ChargeZone</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Mode 2: Highway Trip Planner Panel -->
+      <div id="finderTripPlannerControls" class="trip-planner-panel" style="display: none;">
+        <div class="planner-inputs-grid">
+          <!-- Origin Input -->
+          <div class="planner-input-field">
+            <label class="planner-field-label" for="plannerOriginInput">
+              <i class="fa-solid fa-circle-dot" style="color:#0ea5e9;"></i> Origin (City or GPS)
+            </label>
+            <div class="planner-input-inner">
+              <input type="text" id="plannerOriginInput" class="planner-text-input" placeholder="e.g. New Delhi" value="New Delhi" />
+              <button type="button" class="btn-use-gps-origin" onclick="setPlannerOriginToGps()" title="Use Current GPS Location">
+                <i class="fa-solid fa-crosshairs"></i> GPS
+              </button>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <button type="button" class="btn-planner-swap" onclick="swapPlannerEndpoints()" title="Swap Origin and Destination">
+            <i class="fa-solid fa-right-left"></i>
+          </button>
+
+          <!-- Destination Input -->
+          <div class="planner-input-field">
+            <label class="planner-field-label" for="plannerDestInput">
+              <i class="fa-solid fa-location-dot" style="color:#ef4444;"></i> Destination (City or Hub)
+            </label>
+            <div class="planner-input-inner">
+              <input type="text" id="plannerDestInput" class="planner-text-input" placeholder="e.g. Jaipur" value="Jaipur" />
+            </div>
+          </div>
+
+          <!-- Vehicle Model & Starting Battery SOC -->
+          <div class="planner-vehicle-field">
+            <label class="planner-field-label">
+              <i class="fa-solid fa-car-battery" style="color:#00d4aa;"></i> EV Range / Battery SOC
+            </label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <select id="plannerRangeSelect" class="planner-range-select" title="EV Model & Real Highway Range">
+                <option value="320">Tata Nexon EV Max (320 km)</option>
+                <option value="450">MG ZS EV Long Range (450 km)</option>
+                <option value="520">Hyundai IONIQ 5 / EV6 (520 km)</option>
+                <option value="400">Mahindra XUV400 (400 km)</option>
+                <option value="250">Tiago / Comet EV (250 km)</option>
+                <option value="600">Tesla Model Y / Premium (600 km)</option>
+              </select>
+              <select id="plannerInitialSocSelect" class="planner-soc-select" title="Starting Battery State of Charge">
+                <option value="95">95% Full</option>
+                <option value="90" selected>90% Full</option>
+                <option value="80">80%</option>
+                <option value="70">70%</option>
+                <option value="50">50%</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="button" id="btnCalculateHighwayTrip" class="btn-plan-highway-trip" onclick="calculateHighwayTrip()">
+            <i class="fa-solid fa-bolt fa-fade"></i>
+            <span>Plan Corridor</span>
+          </button>
+        </div>
+
+        <!-- Popular Indian Corridor Presets -->
+        <div class="corridor-quick-pills-row">
+          <span class="corridor-pills-label"><i class="fa-solid fa-road"></i> Popular Corridors:</span>
+          <button type="button" class="corridor-preset-pill active" onclick="applyCorridorPreset('New Delhi', 'Jaipur', 320)">Delhi ↔ Jaipur (270 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('New Delhi', 'Agra', 320)">Delhi ↔ Agra (215 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('Mumbai', 'Pune', 320)">Mumbai ↔ Pune (150 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('Bengaluru', 'Mysuru', 320)">Bengaluru ↔ Mysuru (145 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('Bengaluru', 'Chennai', 320)">Bengaluru ↔ Chennai (345 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('New Delhi', 'Chandigarh', 320)">Delhi ↔ Chandigarh (245 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('Ahmedabad', 'Surat', 320)">Ahmedabad ↔ Surat (265 km)</button>
+          <button type="button" class="corridor-preset-pill" onclick="applyCorridorPreset('Hyderabad', 'Vijayawada', 320)">Hyderabad ↔ Vijayawada (275 km)</button>
+        </div>
+      </div>
+
+      <!-- Split Layout: Interactive Google Map + Live Station Cards Grid -->
+      <div class="finder-split-grid">
+        <!-- Left: Interactive Google Map -->
+        <div class="finder-map-panel">
+          <!-- Top Fullscreen Toolbar (Only Google Map) -->
+          <div class="map-toolbar-overlay" style="justify-content: flex-end;">
+            <button type="button" id="fullscreenMapBtn" class="map-fab-btn" onclick="toggleFullscreenMap()">
+              <i class="fa-solid fa-expand"></i>
+              <span>Full Map</span>
+            </button>
+          </div>
+
+          <!-- The Map Container -->
+          <div id="homeMap"></div>
+
+          <!-- Bottom-Left Live GPS Telemetry & Turn-by-Turn Route HUDs -->
+          <div id="gpsTelemetryHud" class="map-hud-box hidden" style="bottom: 85px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-size:0.7rem;font-weight:800;color:#34d399;text-transform:uppercase;">
+                <i class="fa-solid fa-satellite-dish fa-fade"></i> Live GPS Telemetry
+              </span>
+              <span id="hudGpsSpeed" style="font-size:0.75rem;font-weight:800;color:#38bdf8;">0.0 km/h</span>
+            </div>
+            <div id="hudGpsCoords" style="font-family:monospace;font-size:0.82rem;color:#fff;">28.6139° N, 77.2090° E</div>
+            <div id="hudGpsAccuracy" style="font-size:0.72rem;color:#94a3b8;">±15m Accuracy</div>
+          </div>
+
+          <div id="navigationHud" class="map-hud-box hidden">
+            <div id="navigationHudContent"></div>
+          </div>
+
+          <!-- Bottom-Right Floating Map Controls -->
+          <div class="map-floating-controls">
+            <button type="button" id="gpsTrackFabBtn" class="map-fab-btn" onclick="toggleContinuousGps()" title="Find Stations Near Your Live GPS Location">
+              <i class="fa-solid fa-location-crosshairs"></i>
+              <span>Near Me / GPS</span>
+            </button>
+            <button type="button" class="map-fab-btn" onclick="findNearestAvailableCharger()" title="Find & Route to Nearest Available Charger">
+              <i class="fa-solid fa-bolt" style="color:#f59e0b;"></i>
+              <span>Closest Charger</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Live Stations List -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; padding: 0 0.25rem;">
+            <span style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">Live Available Stations</span>
+            <span id="finderResultsCount" style="font-size: 0.82rem; color: #ff8a65; font-weight: 600;">Search or click Near Me</span>
+          </div>
+          <div class="finder-results-panel" id="homeStationsList">
+            <div style="text-align: center; padding: 3.2rem 1.25rem; color: #94a3b8; background: #111726; border-radius: 16px; border: 1px dashed rgba(255,255,255,0.14);">
+              <i class="fa-solid fa-magnifying-glass-location" style="font-size: 2.4rem; color: #00d4aa; margin-bottom: 0.85rem;"></i>
+              <h4 style="color: #ffffff; font-size: 1.05rem; margin: 0 0 0.4rem 0;">Search Location or Click "Near Me"</h4>
+              <p style="font-size: 0.84rem; line-height: 1.5; margin: 0 0 1.1rem 0;">
+                Enter any City, Town, Village, or Highway above — or use <strong>Near Me</strong> to display nearby EV charging stations on Google Maps.
+              </p>
+              <button type="button" class="btn-card-lock" style="margin: 0 auto; padding: 0.55rem 1.2rem;" onclick="toggleContinuousGps()">
+                <i class="fa-solid fa-crosshairs"></i> Show Stations Near Me
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 30-Minute Guaranteed Slot Lock Feature Section ================= -->
+  <section class="lock-engine-section" id="lock-engine">
+    <div class="engine-container">
+      <div class="engine-content">
+        <div class="section-badge" style="background: rgba(255, 87, 34, 0.14); border-color: rgba(255, 87, 34, 0.35); color: #ff8a65;">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>EXCLUSIVE PROPRIETARY FEATURE</span>
+        </div>
+        <h2>Guaranteed 30-Minute Slot Lock Exclusivity</h2>
+        <p>
+          Never wait in queue again. When you're 20 minutes away from a charging hub, lock your bay in one tap. We hold the connector exclusively for you with automated gate entry verification.
+        </p>
+
+        <div class="engine-features-list">
+          <div class="engine-feature-row">
+            <div class="engine-feat-icon"><i class="fa-solid fa-lock"></i></div>
+            <div class="engine-feat-text">
+              <h4>Zero Queuing Lock</h4>
+              <p>Your chosen charging bay is marked 'RESERVED' across all public navigation apps immediately.</p>
+            </div>
+          </div>
+
+          <div class="engine-feature-row">
+            <div class="engine-feat-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="engine-feat-text">
+              <h4>30-Minute Second-by-Second Timer</h4>
+              <p>Real-time countdown pass with live road traffic ETA tracking while en-route to the station.</p>
+            </div>
+          </div>
+
+          <div class="engine-feature-row">
+            <div class="engine-feat-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="engine-feat-text">
+              <h4>Digital Pass &amp; Seamless Check-In</h4>
+              <p>Instant digital boarding pass with unique Pass ID (e.g. EVY-A1B2C3D4) and one-tap plug-in confirmation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual Mockup Card -->
+      <div>
+        <div class="mockup-pass-card">
+          <div class="mockup-pass-top">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div class="nav-logo-orb" style="width: 32px; height: 32px; font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i></div>
+              <strong style="color: #ffffff;">EV YATRA BOARDING PASS</strong>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: rgba(16,185,129,0.2); color: #34d399;">RESERVED</span>
+          </div>
+
+          <div class="mockup-timer-box">
+            <i class="fa-solid fa-hourglass-half" style="font-size: 1.5rem; color: #ff5722;"></i>
+            <div>
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; font-weight: 700;">Remaining Validity Lock</div>
+              <div class="mockup-timer-val">28:45</div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.88rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
+              <span style="color: #94a3b8;">Station Hub:</span>
+              <strong style="color: #ffffff;">Tata Power EZ Charge - Cyber City</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
+              <span style="color: #94a3b8;">Charging Bay:</span>
+              <strong style="color: #ff5722;">Bay #02 (120kW Dual Gun)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
+              <span style="color: #94a3b8;">Pass Verification:</span>
+              <span style="font-family: monospace; font-weight: 700; color: #38bdf8;">EVY-9753BE44</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem;">
+            <button type="button" class="btn-hero-primary" style="flex: 1; padding: 0.7rem;" onclick="findNearestAvailableCharger()">
+              <i class="fa-solid fa-bolt"></i> Find &amp; Lock Closest Hub Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Become a Partner Section ================= -->
+  <section class="partner-cta-section" id="partner">
+    <div class="partner-cta-card">
+      <div class="section-badge" style="background: rgba(255, 87, 34, 0.15); border-color: rgba(255, 87, 34, 0.4); color: #ff8a65;">
+        <i class="fa-solid fa-handshake"></i>
+        <span>CPO ONBOARDING &amp; FRANCHISE</span>
+      </div>
+      <h2>Turn Your Property Into an EV Charging Revenue Hub</h2>
+      <p>
+        Got commercial land, a hotel, parking lot, or petrol pump? Partner with EV Yatra. We provide complete hardware, cloud telemetry, 24/7 grid connectivity, and high customer footfall.
+      </p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem;">
+        <button type="button" class="btn-hero-primary" onclick="openPilotDashboardModal('partner')">
+          <i class="fa-solid fa-plus-circle"></i> Register New EV Station on Map
+        </button>
+        <button type="button" class="btn-hero-secondary" onclick="openPartnerModal()">
+          <i class="fa-solid fa-handshake"></i> Apply for Franchise Partnership
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Products & Solutions Grid ================= -->
+  <section class="lock-engine-section" id="products" style="background: #080c14;">
+    <div class="finder-container">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="section-badge">
+          <i class="fa-solid fa-cubes"></i>
+          <span>ENERGY ECOSYSTEM</span>
+        </div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 800;">Enterprise Solutions &amp; Hardware</h2>
+        <p style="color: #94a3b8; font-size: 1.05rem; max-width: 600px; margin: 0.5rem auto 0 auto;">
+          Cutting-edge EV infrastructure designed for India's extreme climate and 24/7 highway duty cycles.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem;">
+        <div style="background: #111726; border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div class="engine-feat-icon" style="background: rgba(255,87,34,0.15);"><i class="fa-solid fa-bolt"></i></div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Highway Ultra DC Fast Hubs</h3>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
+            60kW, 120kW, and 240kW liquid-cooled dual-gun dispensers with CCS-2 compliance. Charge 80% battery in 20 minutes.
+          </p>
+          <span style="font-weight: 700; color: #ff5722; font-size: 0.88rem; cursor: pointer;" onclick="openPartnerModal()">Learn More &rarr;</span>
+        </div>
+
+        <div style="background: #111726; border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div class="engine-feat-icon" style="background: rgba(6,182,212,0.15); color: #06b6d4;"><i class="fa-solid fa-house-laptop"></i></div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Home &amp; Apartment Wallbox AC</h3>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
+            7.4kW and 22kW smart connected home chargers with RFID authentication, Wi-Fi schedule management, and solar sync.
+          </p>
+          <span style="font-weight: 700; color: #06b6d4; font-size: 0.88rem; cursor: pointer;" onclick="openOffersModal()">Shop Wallbox &rarr;</span>
+        </div>
+
+        <div style="background: #111726; border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div class="engine-feat-icon" style="background: rgba(16,185,129,0.15); color: #10b981;"><i class="fa-solid fa-truck-moving"></i></div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">Fleet Depot Electrification</h3>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
+            Turnkey charging setups for e-buses, commercial delivery fleets, and cab operators with automated energy billing.
+          </p>
+          <span style="font-weight: 700; color: #10b981; font-size: 0.88rem; cursor: pointer;" onclick="openPartnerModal()">Explore Fleet Plans &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <div class="nav-brand" style="margin-bottom: 1.25rem;">
+          <div class="nav-logo-orb"><i class="fa-solid fa-bolt"></i></div>
+          <div class="nav-logo-text">
+            <span>EV</span>
+            <span class="logo-highlight">YATRA</span>
+            <span class="badge-pro">PRO</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; line-height: 1.6; color: #94a3b8; margin-bottom: 1.25rem;">
+          Building India's largest, fastest, and most accessible smart EV charging infrastructure with 30-minute guaranteed exclusivity locks and 100% telemetry uptime.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Charging Network</h4>
+        <ul class="footer-links">
+          <li><a href="#charger-finder">Pan-India 1,619+ Hubs</a></li>
+          <li><a href="#charger-finder" onclick="document.querySelector('[data-filter=villages]')?.click();">Rural Towns &amp; Villages (280+)</a></li>
+          <li><a href="#lock-engine">30-Min Slot Lock Engine</a></li>
+          <li><a href="#" onclick="openPilotDashboardModal('telemetry'); return false;">Pilot Mission Control</a></li>
+          <li><a href="#" onclick="openInPageAuthModal('login'); return false;">Sign In / Apple ID</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Partners &amp; Business</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openPilotDashboardModal('partner'); return false;">Register New Charging Hub</a></li>
+          <li><a href="#" onclick="openPartnerModal(); return false;">Franchise Opportunities</a></li>
+          <li><a href="#products">Highway Corridor Solutions</a></li>
+          <li><a href="#" onclick="openOffersModal(); return false;">EV Passes &amp; Offers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>24/7 Emergency Support</h4>
+        <ul class="footer-links">
+          <li><strong style="color: #ef4444;"><i class="fa-solid fa-phone-volume"></i> 1800 123 456</strong></li>
+          <li><span style="font-size: 0.8rem; color: #64748b;">Towing, mobile boost &amp; breakdown SOS</span></li>
+          <li><a href="mailto:support@evyatra.in">support@evyatra.in</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 EV Yatra Pro. Built for India's Electric Future. All rights reserved.</div>
+      <div>Designed with Precision &bull; 100% Pan-India Live Smart Grid</div>
+    </div>
+  </footer>
+
+  <!-- ================= Sticky 30-Minute Active Reservation Bar ================= -->
+  <div id="stickyReservationBar" class="sticky-reservation-bar hidden">
+    <div style="display:flex;align-items:center;gap:0.85rem;">
+      <div class="nav-logo-orb" style="width:40px;height:40px;font-size:1.1rem;"><i class="fa-solid fa-lock"></i></div>
+      <div>
+        <div style="font-size:0.72rem;font-weight:800;color:#00d4aa;text-transform:uppercase;">Active 30-Min Exclusive Slot Lock</div>
+        <div id="stickyBarStationName" style="font-size:0.98rem;font-weight:800;color:#fff;">Station Name</div>
+        <div id="stickyBarBayInfo" style="font-size:0.78rem;color:#94a3b8;">Bay #1</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <div style="background:rgba(255,87,34,0.15);border:1px solid rgba(255,87,34,0.4);border-radius:10px;padding:0.4rem 0.85rem;text-align:center;">
+        <div style="font-size:0.65rem;color:#94a3b8;font-weight:700;">TIME REMAINING</div>
+        <div id="stickyBarCountdown" style="font-family:var(--font-heading);font-size:1.3rem;font-weight:800;color:#ff5722;">29:59</div>
+      </div>
+      <button type="button" class="btn-card-lock" style="padding:0.55rem 1rem;" onclick="checkInActiveBooking()">
+        <i class="fa-solid fa-plug-circle-check"></i> Arrived &amp; Check In
+      </button>
+      <button type="button" class="btn-card-inspect" onclick="cancelActiveBooking()">
+        Cancel Lock
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= 1. 30-Minute Booking Modal ================= -->
+  <div id="homeBookingModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card">
+      <button type="button" class="home-modal-close" onclick="closeHomeBookingModal()">&times;</button>
+
+      <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+        <div class="nav-logo-orb" style="width: 32px; height: 32px; font-size: 0.9rem;"><i class="fa-solid fa-lock"></i></div>
+        <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800;">30-Minute Guaranteed Slot Lock</h3>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Hold this charging bay exclusively for 30 minutes while you drive to the station.
+      </p>
+
+      <div style="background: #192238; border-radius: 12px; padding: 1rem; margin-bottom: 1.15rem;">
+        <h4 id="bookModalStationName" style="color: #ffffff; margin-bottom: 0.25rem; font-size: 1.05rem;">Station Name</h4>
+        <p id="bookModalStationAddress" style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">Station Address</p>
+        <span id="bookModalPrice" style="color: #10b981; font-weight: 700; font-size: 0.92rem;">₹18.5/kWh</span>
+      </div>
+
+      <form id="homeBookingForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+        <input type="hidden" id="bookStationId" />
+
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Select Charging Bay</label>
+          <select id="bookSlotSelect" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;"></select>
+        </div>
+
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Full Name</label>
+          <input type="text" id="bookUserName" required placeholder="e.g. Alex Mercer" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+        </div>
+
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Mobile Number (for Pass SMS)</label>
+          <input type="tel" id="bookUserPhone" required placeholder="+91 98765 00000" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Vehicle Number</label>
+            <input type="text" id="bookVehicleNumber" required placeholder="DL 01 EV 8899" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none; text-transform: uppercase;" />
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">EV Model</label>
+            <input type="text" id="bookVehicleModel" placeholder="Tata Nexon EV Max" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+          </div>
+        </div>
+
+        <button type="submit" id="bookSubmitBtn" class="btn-hero-primary" style="width: 100%; height: 44px; margin-top: 0.35rem;">
+          <i class="fa-solid fa-lock"></i> Confirm 30-Minute Lock
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 2. Digital Pass Modal ================= -->
+  <div id="homePassModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card" style="text-align: center;">
+      <button type="button" class="home-modal-close" onclick="closeHomePassModal()">&times;</button>
+
+      <div style="margin-bottom: 1rem;">
+        <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: #10b981;"></i>
+        <h3 style="margin-top: 0.5rem; font-size: 1.5rem; font-weight: 800;">Slot Exclusively Locked!</h3>
+        <p style="font-size: 0.85rem; color: #94a3b8;">Show this entry pass when you arrive at the charging hub.</p>
+      </div>
+
+      <div style="background: rgba(255, 87, 34, 0.12); border: 1px solid rgba(255, 87, 34, 0.4); border-radius: 14px; padding: 1rem; margin-bottom: 1.25rem;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #94a3b8;">LOCK VALIDITY REMAINING</div>
+        <div id="passCountdownTimer" style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #ff5722;">29:59</div>
+      </div>
+
+      <div style="background: #192238; border-radius: 12px; padding: 1rem; text-align: left; font-size: 0.88rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Pass ID:</span>
+          <strong id="passId" style="font-family: monospace; color: #38bdf8;">EVY-00000000</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Station:</span>
+          <strong id="passStationName" style="color: #fff;">Hub Name</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Assigned Bay:</span>
+          <strong id="passBayNumber" style="color: #ff5722;">Bay #1</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Pilot Name:</span>
+          <span id="passPilotName" style="color: #fff;">Pilot</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #94a3b8;">Vehicle:</span>
+          <span id="passVehicleNumber" style="color: #fff;">DL 01 EV 0000</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button type="button" class="btn-hero-primary" style="flex: 1;" onclick="checkInActiveBooking()">
+          <i class="fa-solid fa-plug"></i> Arrived &amp; Plug In
+        </button>
+        <button type="button" class="btn-hero-secondary" onclick="closeHomePassModal()">
+          Keep Active
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. Inspect Slots Modal ================= -->
+  <div id="homeInspectModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card">
+      <button type="button" class="home-modal-close" onclick="closeHomeInspectModal()">&times;</button>
+
+      <div style="margin-bottom: 1.25rem;">
+        <div class="section-badge"><i class="fa-solid fa-gauge"></i> LIVE BAY TELEMETRY</div>
+        <h3 id="inspectModalStationTitle" style="font-size: 1.35rem; font-weight: 800; margin-top: 0.25rem;">Station Slots</h3>
+        <p style="font-size: 0.85rem; color: #94a3b8;">Click any available bay to lock it exclusively for 30 minutes.</p>
+      </div>
+
+      <div id="inspectSlotsGrid" style="display: flex; flex-direction: column; gap: 0.75rem; max-height: 340px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- ================= 4. Pilot Mission Control Dashboard Modal (5 Real Tabs) ================= -->
+  <div id="pilotDashboardModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card pilot-modal-wide">
+      <button type="button" class="home-modal-close" onclick="closePilotDashboardModal()">&times;</button>
+
+      <!-- Header -->
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:0.85rem;">
+          <div id="pilotAvatarOrb" style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#041318;">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:800;color:#00d4aa;text-transform:uppercase;">EV Yatra Account &amp; Mission Control</div>
+            <h3 id="pilotHeaderName" style="margin:0;font-size:1.35rem;font-weight:800;color:#fff;">EV Driver</h3>
+            <div style="font-size:0.8rem;color:#94a3b8;">
+              <span id="pilotHeaderEmail">driver@evyatra.in</span> &bull; <span id="pilotHeaderVehicle" style="color:#38bdf8;">Registered EV</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="signOutPilot()" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#f87171;border-radius:10px;padding:0.45rem 0.9rem;font-size:0.8rem;font-weight:700;cursor:pointer;">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+
+      <!-- 5 Tabs Navigation -->
+      <div class="pilot-tabs-nav">
+        <button type="button" class="pilot-tab-btn active" data-tab="telemetry" onclick="switchPilotTab('telemetry')">
+          <i class="fa-solid fa-chart-line"></i> Telemetry &amp; Impact
+        </button>
+        <button type="button" class="pilot-tab-btn" data-tab="garage" onclick="switchPilotTab('garage')">
+          <i class="fa-solid fa-car-battery"></i> My EV Garage
+        </button>
+        <button type="button" class="pilot-tab-btn" data-tab="partner" onclick="switchPilotTab('partner')">
+          <i class="fa-solid fa-charging-station"></i> Add EV Station
+        </button>
+        <button type="button" class="pilot-tab-btn" data-tab="history" onclick="switchPilotTab('history')">
+          <i class="fa-solid fa-ticket"></i> Passes &amp; Orders
+        </button>
+        <button type="button" class="pilot-tab-btn" data-tab="account" onclick="switchPilotTab('account')">
+          <i class="fa-solid fa-shield-halved"></i> Account &amp; Security
+        </button>
+      </div>
+
+      <!-- Tab 1: Real Telemetry & Impact -->
+      <div id="pilotTab-telemetry" class="pilot-tab-pane active">
+        <div class="pilot-stat-grid">
+          <div class="pilot-stat-box">
+            <div style="font-size:0.75rem;color:#94a3b8;">TOTAL ENERGY CHARGED</div>
+            <div id="pilotStatKwh" style="font-size:1.65rem;font-weight:800;color:#00d4aa;margin-top:4px;">0.0 kWh</div>
+          </div>
+          <div class="pilot-stat-box">
+            <div style="font-size:0.75rem;color:#94a3b8;">CO₂ OFFSET SAVED</div>
+            <div id="pilotStatCo2" style="font-size:1.65rem;font-weight:800;color:#34d399;margin-top:4px;">0.0 kg</div>
+          </div>
+          <div class="pilot-stat-box">
+            <div style="font-size:0.75rem;color:#94a3b8;">COMPLETED SESSIONS</div>
+            <div id="pilotStatSessions" style="font-size:1.65rem;font-weight:800;color:#38bdf8;margin-top:4px;">0 Sessions</div>
+          </div>
+          <div class="pilot-stat-box">
+            <div style="font-size:0.75rem;color:#94a3b8;">EST. FUEL COST SAVED</div>
+            <div id="pilotStatSavedInr" style="font-size:1.65rem;font-weight:800;color:#ff8a65;margin-top:4px;">₹0</div>
+          </div>
+        </div>
+        <div style="background:#192238;border-radius:12px;padding:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;">
+          <div>
+            <strong style="color:#fff;font-size:0.95rem;">Live Telemetry Sync Active</strong>
+            <p style="margin:2px 0 0 0;font-size:0.8rem;color:#94a3b8;">Every time you lock a bay and check in at a station, your kWh and CO₂ savings update automatically.</p>
+          </div>
+          <button type="button" class="btn-card-lock" style="flex:none;" onclick="closePilotDashboardModal(); findNearestAvailableCharger();">
+            <i class="fa-solid fa-bolt"></i> Route to Nearest Hub
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab 2: My EV Garage -->
+      <div id="pilotTab-garage" class="pilot-tab-pane">
+        <h4 style="margin:0 0 0.75rem 0;font-size:1rem;color:#fff;">Your Registered EV Fleet</h4>
+        <div id="pilotGarageList" style="display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.25rem;"></div>
+
+        <form id="pilotAddVehicleForm" style="background:#192238;border-radius:12px;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <strong style="font-size:0.9rem;color:#00d4aa;">+ Add New EV to Garage</strong>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
+            <input type="text" id="newEvModel" required placeholder="EV Model (e.g. MG ZS EV)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <input type="text" id="newEvPlate" required placeholder="Plate (e.g. MH 12 EV 4455)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;text-transform:uppercase;" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:0.65rem;">
+            <select id="newEvConnector" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;">
+              <option value="CCS2">CCS-2 Fast DC</option>
+              <option value="Type 2 AC">Type 2 AC</option>
+              <option value="CHAdeMO">CHAdeMO</option>
+            </select>
+            <input type="number" id="newEvCapacity" step="0.5" placeholder="Battery kWh (e.g. 50.3)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <button type="submit" class="btn-card-lock" style="padding:0 1.1rem;">Add EV</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 3: Station Partner Portal (Register Permanent Station) -->
+      <div id="pilotTab-partner" class="pilot-tab-pane">
+        <form id="pilotRegisterStationForm" style="background:#192238;border-radius:12px;padding:1.1rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <strong style="font-size:0.95rem;color:#00d4aa;">Register New EV Charging Station on Live Map</strong>
+            <button type="button" onclick="autoFillStationGps()" style="background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;border-radius:8px;padding:4px 10px;font-size:0.75rem;font-weight:700;cursor:pointer;">
+              <i class="fa-solid fa-location-crosshairs"></i> Use My GPS
+            </button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
+            <input type="text" id="newStationName" required placeholder="Station Name (e.g. Highway Pulse Hub)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <input type="text" id="newStationOperator" placeholder="Network / Operator (e.g. Tata Power)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+          </div>
+          <input type="text" id="newStationAddress" required placeholder="Full Address, Town, Village or NH Highway" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
+            <input type="number" id="newStationLat" step="any" required placeholder="Latitude (e.g. 28.6139)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <input type="number" id="newStationLng" step="any" required placeholder="Longitude (e.g. 77.2090)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.65rem;">
+            <input type="number" id="newStationPower" value="60" placeholder="Power (kW)" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <input type="number" id="newStationPrice" step="0.5" value="18.5" placeholder="Price ₹/kWh" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            <input type="number" id="newStationSlots" value="4" placeholder="Total Bays" style="height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+          </div>
+          <button type="submit" class="btn-hero-primary" style="height:42px;">
+            <i class="fa-solid fa-plus-circle"></i> Publish Station Permanently to Live Grid
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab 4: Passes, Orders & History -->
+      <div id="pilotTab-history" class="pilot-tab-pane">
+        <h4 style="margin:0 0 0.6rem 0;font-size:0.95rem;color:#fff;">30-Minute Slot Lock Reservations</h4>
+        <div id="pilotHistoryList" style="display:flex;flex-direction:column;gap:0.6rem;max-height:200px;overflow-y:auto;margin-bottom:1.1rem;"></div>
+
+        <h4 style="margin:0 0 0.6rem 0;font-size:0.95rem;color:#fff;">Active Passes &amp; Hardware Orders</h4>
+        <div id="pilotOrdersList" style="display:flex;flex-direction:column;gap:0.6rem;max-height:160px;overflow-y:auto;"></div>
+      </div>
+
+      <!-- Tab 5: Real Account & Security Settings -->
+      <div id="pilotTab-account" class="pilot-tab-pane">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <!-- Update Profile Form -->
+          <form id="pilotUpdateProfileForm" style="background:#192238;border-radius:12px;padding:1rem;display:flex;flex-direction:column;gap:0.7rem;">
+            <strong style="font-size:0.9rem;color:#00d4aa;"><i class="fa-solid fa-user-pen"></i> Edit Profile Details</strong>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">Full Name</label>
+              <input type="text" id="profEditName" required style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">Mobile Number</label>
+              <input type="tel" id="profEditPhone" required style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">Primary EV Model</label>
+              <input type="text" id="profEditVehicleModel" required style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">Primary License Plate</label>
+              <input type="text" id="profEditVehicleNumber" required style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;text-transform:uppercase;" />
+            </div>
+            <button type="submit" class="btn-card-lock" style="height:38px;">Save Profile Changes</button>
+          </form>
+
+          <!-- Change Password Form -->
+          <form id="pilotChangePasswordForm" style="background:#192238;border-radius:12px;padding:1rem;display:flex;flex-direction:column;gap:0.7rem;">
+            <strong style="font-size:0.9rem;color:#38bdf8;"><i class="fa-solid fa-lock"></i> Change Account Password</strong>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">Current Password</label>
+              <input type="password" id="profCurrPassword" required placeholder="Enter current password" style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;color:#94a3b8;display:block;margin-bottom:2px;">New Password (min 6 chars)</label>
+              <input type="password" id="profNewPassword" required placeholder="Enter new password" style="width:100%;height:38px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.15);color:#fff;padding:0 0.75rem;" />
+            </div>
+            <button type="submit" class="btn-card-inspect" style="height:38px;justify-content:center;border-color:#38bdf8;color:#38bdf8;margin-top:auto;">
+              Update Password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live SMS / Email OTP Push Notification Banner (In-Page) -->
+  <div id="inPageOtpPushBanner" style="position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:430px;background:linear-gradient(135deg,rgba(15,23,42,0.98),rgba(17,24,39,0.98));border:1.5px solid #00d4aa;border-radius:16px;padding:0.9rem 1.1rem;box-shadow:0 20px 50px rgba(0,0,0,0.75),0 0 25px rgba(0,212,170,0.25);z-index:10050;display:none;align-items:center;justify-content:space-between;gap:0.85rem;">
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,212,170,0.15);border:1px solid rgba(0,212,170,0.4);display:flex;align-items:center;justify-content:center;color:#00d4aa;font-size:1.1rem;flex-shrink:0;">
+        <i class="fa-solid fa-comment-sms"></i>
+      </div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#00d4aa;">
+          EV-YATRA SECURITY OTP • NOW
+        </div>
+        <div style="font-size:0.84rem;color:#e2e8f0;margin-top:2px;">
+          Your verification code is <strong id="inPageOtpPushCode" style="font-size:1.05rem;color:#fff;letter-spacing:2px;background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:6px;">------</strong>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.4rem;">
+      <button type="button" id="btnInPageAutoFillOtp" style="background:linear-gradient(135deg,#00d4aa,#0ea5e9);border:none;color:#041318;font-weight:800;font-size:0.75rem;padding:0.45rem 0.75rem;border-radius:8px;cursor:pointer;white-space:nowrap;">
+        Auto-Fill
+      </button>
+      <button type="button" onclick="document.getElementById('inPageOtpPushBanner').style.display='none'" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:0.95rem;padding:4px;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= 5. In-Page Sign In / Create Account & Real Apple ID Modal ================= -->
+  <div id="inPageAuthModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card" style="max-width:430px;">
+      <button type="button" class="home-modal-close" onclick="closeInPageAuthModal()">&times;</button>
+
+      <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:1rem;">
+        <div class="nav-logo-orb" style="width:34px;height:34px;font-size:0.95rem;"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <h3 id="inPageAuthTitle" style="margin:0;font-size:1.3rem;font-weight:800;">Sign In to EV Yatra</h3>
+          <div style="font-size:0.78rem;color:#94a3b8;">Pan-India EV Grid &amp; Account Portal</div>
+        </div>
+      </div>
+
+      <!-- Sign In / Sign Up Mode Switcher Tabs -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:#0b101c;padding:4px;border-radius:10px;margin-bottom:1rem;border:1px solid rgba(255,255,255,0.1);">
+        <button type="button" id="modalTabLogin" class="pilot-tab-btn active" style="justify-content:center;" onclick="switchInPageAuthMode('login')">Sign In</button>
+        <button type="button" id="modalTabSignup" class="pilot-tab-btn" style="justify-content:center;" onclick="switchInPageAuthMode('signup')">Create Account</button>
+      </div>
+
+      <!-- OAuth Buttons: Real Apple ID & Google -->
+      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1rem;">
+        <button type="button" onclick="openOAuthProviderModal('apple')" style="width:100%;height:42px;border-radius:10px;background:#ffffff;color:#0b0f19;border:none;font-weight:700;font-size:0.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.55rem;">
+          <i class="fa-brands fa-apple" style="font-size:1.15rem;"></i>
+          <span>Continue with Apple ID</span>
+        </button>
+
+        <button type="button" onclick="openOAuthProviderModal('google')" style="width:100%;height:42px;border-radius:10px;background:#192238;color:#ffffff;border:1px solid rgba(255,255,255,0.18);font-weight:700;font-size:0.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.55rem;">
+          <i class="fa-brands fa-google" style="color:#4285F4;font-size:1rem;"></i>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <div style="text-align:center;font-size:0.72rem;color:#64748b;font-weight:700;letter-spacing:0.05em;margin-bottom:0.85rem;">OR SIGN IN WITH PASSWORD / 6-DIGIT OTP</div>
+
+      <form id="inPageAuthForm" style="display:flex;flex-direction:column;gap:0.8rem;">
+        <!-- Sub-Method Switch: Password vs 6-Digit OTP -->
+        <div id="modalLoginMethodSwitch" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#0b101c;padding:4px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);">
+          <button type="button" id="modalMethodPassBtn" onclick="setInPageLoginSubMethod('password')" style="background:rgba(0,212,170,0.16);color:#00d4aa;border:1px solid rgba(0,212,170,0.35);border-radius:7px;padding:0.42rem;font-size:0.78rem;font-weight:700;cursor:pointer;">
+            <i class="fa-solid fa-lock"></i> Password
+          </button>
+          <button type="button" id="modalMethodOtpBtn" onclick="setInPageLoginSubMethod('otp')" style="background:transparent;color:#94a3b8;border:1px solid transparent;border-radius:7px;padding:0.42rem;font-size:0.78rem;font-weight:700;cursor:pointer;">
+            <i class="fa-solid fa-shield-halved"></i> 6-Digit OTP
+          </button>
+        </div>
+
+        <div id="modalRowName" style="display:none;">
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Full Name</label>
+          <input type="text" id="modalAuthName" placeholder="Enter your full name" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Email or 10-Digit Mobile Number</label>
+          <input type="text" id="modalAuthEmail" required placeholder="you@domain.com or +91 98765 43210" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+
+        <div id="modalRowPhone" style="display:none;">
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Mobile Number</label>
+          <input type="tel" id="modalAuthPhone" placeholder="+91 98765 43210" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+
+        <div id="modalRowPassword">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+            <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;">Password</label>
+            <div style="display:flex;gap:0.75rem;">
+              <a href="#" onclick="event.preventDefault(); setInPageLoginSubMethod('otp');" style="font-size:0.75rem;color:#00d4aa;text-decoration:none;font-weight:700;">Use OTP Instead</a>
+              <a href="#" onclick="event.preventDefault(); openResetPasswordModalInPage();" style="font-size:0.75rem;color:#38bdf8;text-decoration:none;">Forgot password?</a>
+            </div>
+          </div>
+          <div style="position:relative;">
+            <input type="password" id="modalAuthPassword" placeholder="Enter password (min 6 chars)" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 2.4rem 0 0.85rem;outline:none;" />
+            <button type="button" onclick="toggleModalPasswordEye()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;">
+              <i id="modalPasswordEyeIcon" class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 6-Digit OTP Input Row (Visible in OTP Login Mode) -->
+        <div id="modalRowOtpVerify" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;">
+            <label style="font-size:0.78rem;font-weight:600;color:#00d4aa;">Enter 6-Digit Verification OTP</label>
+            <a href="#" onclick="event.preventDefault(); requestInPageLoginOtp(true);" style="font-size:0.75rem;color:#38bdf8;text-decoration:none;">Resend OTP</a>
+          </div>
+          <input type="text" id="modalAuthOtpInput" maxlength="6" inputmode="numeric" placeholder="Enter 6-digit OTP" style="width:100%;height:44px;border-radius:8px;background:#0b101c;border:1.5px solid #00d4aa;color:#00d4aa;font-size:1.15rem;font-weight:800;letter-spacing:6px;text-align:center;outline:none;" />
+        </div>
+
+        <div id="modalRowVehicle" style="display:none;grid-template-columns:1fr 1fr;gap:0.65rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">EV Model</label>
+            <input type="text" id="modalAuthVehicle" placeholder="Tata Nexon EV Max" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">License Plate</label>
+            <input type="text" id="modalAuthVehicleNumber" placeholder="DL 01 EV 1234" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;text-transform:uppercase;" />
+          </div>
+        </div>
+
+        <button type="submit" id="modalAuthSubmitBtn" class="btn-hero-primary" style="width:100%;height:42px;margin-top:0.25rem;">
+          <i class="fa-solid fa-bolt"></i>
+          <span id="modalAuthSubmitText">Sign In to EV Yatra</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 6. Real Apple ID & Google Sign-In Modal ================= -->
+  <div id="oauthProviderModal" class="home-modal-backdrop hidden" style="z-index:2100;">
+    <div class="home-modal-card" style="max-width:400px;">
+      <button type="button" class="home-modal-close" onclick="closeOAuthProviderModal()">&times;</button>
+      <h3 id="oauthModalTitle" style="margin:0 0 0.4rem 0;font-size:1.2rem;font-weight:800;"><i class="fa-brands fa-apple"></i> Sign in with Apple ID</h3>
+      <p id="oauthModalDesc" style="font-size:0.8rem;color:#94a3b8;margin:0 0 1rem 0;">Enter your Apple ID credentials to sign in or link your EV Yatra account.</p>
+
+      <form id="oauthModalForm" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div>
+          <label id="oauthModalEmailLabel" style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Apple ID (iCloud or Email)</label>
+          <input type="email" id="oauthModalEmail" required placeholder="yourname@icloud.com" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Full Name (for new accounts)</label>
+          <input type="text" id="oauthModalName" placeholder="Your Full Name" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+        <div id="oauthModalPassRow">
+          <label id="oauthModalPassLabel" style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Account Password</label>
+          <input type="password" id="oauthModalPassword" required placeholder="Enter your password" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+        <button type="submit" class="btn-hero-primary" style="width:100%;height:42px;">
+          <span id="oauthModalSubmitText">Continue with Apple ID</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 6B. Real In-Page OTP Password Reset Modal ================= -->
+  <div id="inPageResetPasswordModal" class="home-modal-backdrop hidden" style="z-index:2150;">
+    <div class="home-modal-card" style="max-width:400px;">
+      <button type="button" class="home-modal-close" onclick="closeResetPasswordModalInPage()">&times;</button>
+      <h3 style="margin:0 0 0.4rem 0;font-size:1.2rem;font-weight:800;"><i class="fa-solid fa-key" style="color:#00d4aa;"></i> Reset Password via OTP</h3>
+      <p style="font-size:0.8rem;color:#94a3b8;margin:0 0 1rem 0;">Receive a 6-digit OTP on your registered Email or Mobile to set a new password.</p>
+      <form id="inPageResetPasswordForm" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">Registered Email or Mobile</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input type="text" id="inPageResetEmail" required placeholder="you@domain.com or +91 98765 43210" style="flex:1;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+            <button type="button" id="btnInPageSendResetOtp" onclick="sendInPageResetOtp()" style="background:rgba(0,212,170,0.16);border:1px solid #00d4aa;color:#00d4aa;font-weight:700;font-size:0.78rem;padding:0 0.8rem;border-radius:8px;cursor:pointer;white-space:nowrap;">
+              Send OTP
+            </button>
+          </div>
+        </div>
+        <div id="inPageResetOtpRow" style="display:none;">
+          <label style="font-size:0.78rem;font-weight:600;color:#00d4aa;display:block;margin-bottom:0.25rem;">6-Digit OTP Code</label>
+          <input type="text" id="inPageResetOtpInput" maxlength="6" inputmode="numeric" placeholder="Enter 6-digit OTP" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1.5px solid #00d4aa;color:#00d4aa;font-weight:800;letter-spacing:4px;padding:0 0.85rem;outline:none;" />
+        </div>
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:0.25rem;">New Password (min 6 chars)</label>
+          <input type="password" id="inPageResetNewPass" required placeholder="Enter new password" style="width:100%;height:40px;border-radius:8px;background:#0b101c;border:1px solid rgba(255,255,255,0.16);color:#fff;padding:0 0.85rem;outline:none;" />
+        </div>
+        <button type="submit" class="btn-hero-primary" style="width:100%;height:42px;">
+          Verify OTP &amp; Update Password
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 7. Partner With Us Modal ================= -->
+  <div id="partnerInquiryModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card">
+      <button type="button" class="home-modal-close" onclick="closePartnerModal()">&times;</button>
+
+      <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+        <div class="nav-logo-orb" style="width: 34px; height: 34px; font-size: 0.95rem;"><i class="fa-solid fa-handshake"></i></div>
+        <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800;">Become an EV Yatra CPO Partner</h3>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Monetize your commercial parking lot or land with high-yield EV charging stations.
+      </p>
+
+      <form id="partnerInquiryForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">Contact Person / Company Name</label>
+          <input type="text" id="partName" required placeholder="e.g. Ramesh Patel (Hotel Highway King)" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">Phone Number</label>
+            <input type="tel" id="partPhone" required placeholder="+91 98765 00000" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">City / State</label>
+            <input type="text" id="partCity" required placeholder="e.g. Jaipur, Rajasthan" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">Email Address</label>
+          <input type="email" id="partEmail" required placeholder="partner@domain.com" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.85rem; outline: none;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">Property Type</label>
+            <select id="partLandType" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.75rem; outline: none;">
+              <option value="Commercial Mall / Hotel">Commercial Mall / Hotel</option>
+              <option value="Highway Dhaba / Fuel Station">Highway Dhaba / Fuel Station</option>
+              <option value="Tech Park / Corporate">Tech Park / Corporate</option>
+              <option value="Residential Society">Residential Society</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.3rem;">Power Load Available</label>
+            <select id="partPower" style="width: 100%; height: 42px; border-radius: 8px; background: #0b101c; border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0 0.75rem; outline: none;">
+              <option value="60kW - 120kW DC Fast">60kW - 120kW DC Fast</option>
+              <option value="120kW - 240kW Ultra DC">120kW - 240kW Ultra DC</option>
+              <option value="22kW AC Destination">22kW AC Destination</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="partSubmitBtn" class="btn-hero-primary" style="width: 100%; height: 44px; margin-top: 0.35rem;">
+          Submit Partnership Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 8. EV Yatra Store & Membership Modal ================= -->
+  <div id="offersModal" class="home-modal-backdrop hidden">
+    <div class="home-modal-card">
+      <button type="button" class="home-modal-close" onclick="closeOffersModal()">&times;</button>
+
+      <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.5rem;">
+        <span style="font-size: 1.8rem;">🛍️</span>
+        <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800;">EV Yatra Store &amp; Passes</h3>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Activate highway charging passes or order smart charging hardware linked to your account.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+        <div style="background: #192238; border: 1px solid rgba(255,87,34,0.3); border-radius: 12px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+          <div>
+            <div style="color: #ff5722; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">MEMBERSHIP PASS</div>
+            <strong style="color: #ffffff; font-size: 1rem;">Pan-India Highway Pass</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 2px 0 0 0;">Flat 15% discount on all DC fast charging across 1,619+ hubs.</p>
+          </div>
+          <button type="button" class="btn-card-lock" style="flex: none; padding: 0.45rem 0.9rem;" onclick="purchaseStoreItem('Pan-India Highway Pass', 'membership_pass', 499)">
+            Activate ₹499/mo
+          </button>
+        </div>
+
+        <div style="background: #192238; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+          <div>
+            <div style="color: #38bdf8; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">SMART HARDWARE</div>
+            <strong style="color: #ffffff; font-size: 1rem;">EV Yatra RFID Keyfob</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 2px 0 0 0;">Tap-and-charge at any bay even without mobile network.</p>
+          </div>
+          <button type="button" class="btn-card-lock" style="flex: none; padding: 0.45rem 0.9rem;" onclick="purchaseStoreItem('EV Yatra RFID Keyfob', 'rfid_hardware', 299)">
+            Order ₹299
+          </button>
+        </div>
+
+        <div style="background: #192238; border: 1px solid rgba(0,212,170,0.25); border-radius: 12px; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+          <div>
+            <div style="color: #00d4aa; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">HOME CHARGER</div>
+            <strong style="color: #ffffff; font-size: 1rem;">7.4kW Smart Home Wallbox AC</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 2px 0 0 0;">Wi-Fi + RFID enabled weatherproof home charger with installation.</p>
+          </div>
+          <button type="button" class="btn-card-lock" style="flex: none; padding: 0.45rem 0.9rem;" onclick="purchaseStoreItem('7.4kW Smart Home Wallbox AC', 'home_charger', 24999)">
+            Order ₹24,999
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Popup -->
+  <div id="homeToast" class="home-toast"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Unified Controller -->
+  <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+{
+  "status": "success",
+  "total_stations_in_db": 1619,
+  "total_charging_slots_in_db": 4631,
+  "osm_live_nodes_harvested": 600,
+  "curated_pan_india_stations": 669,
+  "top_cities_coverage": [
+    {
+      "city": "Connaught Place",
+      "stations": 70
+    },
+    {
+      "city": "Saket",
+      "stations": 61
+    },
+    {
+      "city": "Kochi",
+      "stations": 52
+    },
+    {
+      "city": "New Delhi",
+      "stations": 41
+    },
+    {
+      "city": "Visakhapatnam",
+      "stations": 29
+    },
+    {
+      "city": "Hinjewadi",
+      "stations": 24
+    },
+    {
+      "city": "Coimbatore",
+      "stations": 24
+    },
+    {
+      "city": "Pune",
+      "stations": 23
+    },
+    {
+      "city": "Indiranagar",
+      "stations": 20
+    },
+    {
+      "city": "Bengaluru",
+      "stations": 20
+    },
+    {
+      "city": "Thrissur",
+      "stations": 17
+    },
+    {
+      "city": "Whitefield",
+      "stations": 14
+    },
+    {
+      "city": "Koramangala",
+      "stations": 14
+    },
+    {
+      "city": "New Town Salt Lake",
+      "stations": 13
+    },
+    {
+      "city": "Kottayam",
+      "stations": 13
+    },
+    {
+      "city": "Kolkata",
+      "stations": 13
+    },
+    {
+      "city": "Hosur",
+      "stations": 11
+    },
+    {
+      "city": "Dehradun",
+      "stations": 11
+    },
+    {
+      "city": "Aerocity",
+      "stations": 11
+    },
+    {
+      "city": "Thiruvananthapuram",
+      "stations": 10
+    }
+  ],
+  "networks_coverage": [
+    {
+      "network": "Public EV Network",
+      "stations": 268
+    },
+    {
+      "network": "Tata Power",
+      "stations": 125
+    },
+    {
+      "network": "IOCL e-Charge",
+      "stations": 119
+    },
+    {
+      "network": "BPCL e-Drive",
+      "stations": 118
+    },
+    {
+      "network": "Statiq",
+      "stations": 114
+    },
+    {
+      "network": "Ather Grid",
+      "stations": 112
+    },
+    {
+      "network": "HPCL Electric",
+      "stations": 111
+    },
+    {
+      "network": "Jio-bp pulse",
+      "stations": 104
+    },
+    {
+      "network": "Tata Power EZ Charge",
+      "stations": 90
+    },
+    {
+      "network": "Zeon Charging",
+      "stations": 89
+    },
+    {
+      "network": "ChargeZone",
+      "stations": 79
+    },
+    {
+      "network": "Glida",
+      "stations": 64
+    },
+    {
+      "network": "KSEB e-Charge",
+      "stations": 20
+    },
+    {
+      "network": "Jio-bp",
+      "stations": 20
+    },
+    {
+      "network": "Honda e:Swap",
+      "stations": 15
+    },
+    {
+      "network": "CESL National Grid",
+      "stations": 14
+    },
+    {
+      "network": "Yuma Energy",
+      "stations": 8
+    },
+    {
+      "network": "ElectriVa",
+      "stations": 7
+    },
+    {
+      "network": "Vida",
+      "stations": 6
+    },
+    {
+      "network": "Shell Recharge",
+      "stations": 6
+    },
+    {
+      "network": "Kerala State Electricity Board",
+      "stations": 4
+    },
+    {
+      "network": "Bolt.Earth",
+      "stations": 4
+    },
+    {
+      "network": "Hyundai",
+      "stations": 3
+    },
+    {
+      "network": "Charge Karo",
+      "stations": 3
+    },
+    {
+      "network": "BESCOM EV",
+      "stations": 3
+    },
+    {
+      "network": "Vinfast",
+      "stations": 2
+    },
+    {
+      "network": "Veev",
+      "stations": 2
+    },
+    {
+      "network": "Uplug",
+      "stations": 2
+    },
+    {
+      "network": "Tesla",
+      "stations": 2
+    },
+    {
+      "network": "Sun Mobility",
+      "stations": 2
+    },
+    {
+      "network": "Relux Electric",
+      "stations": 2
+    },
+    {
+      "network": "Plug Share",
+      "stations": 2
+    },
+    {
+      "network": "Okaya",
+      "stations": 2
+    },
+    {
+      "network": "Magenta ChargeGrid",
+      "stations": 2
+    },
+    {
+      "network": "Lectrix Ev",
+      "stations": 2
+    },
+    {
+      "network": "Hp Echarge",
+      "stations": 2
+    },
+    {
+      "network": "Goec",
+      "stations": 2
+    },
+    {
+      "network": "Go Ec",
+      "stations": 2
+    },
+    {
+      "network": "Electric Vehicle Charging Station",
+      "stations": 2
+    },
+    {
+      "network": "Drive",
+      "stations": 2
+    },
+    {
+      "network": "Charj Karo",
+      "stations": 2
+    },
+    {
+      "network": "Chargepoint",
+      "stations": 2
+    },
+    {
+      "network": "Bijlify",
+      "stations": 2
+    },
+    {
+      "network": "Adani",
+      "stations": 2
+    },
+    {
+      "network": "\u00capump",
+      "stations": 1
+    },
+    {
+      "network": "\u00c9lectricit\u00e9 De France",
+      "stations": 1
+    },
+    {
+      "network": "Zevfy",
+      "stations": 1
+    },
+    {
+      "network": "Zeon Fast Grid",
+      "stations": 1
+    },
+    {
+      "network": "Zeal Energy Services",
+      "stations": 1
+    },
+    {
+      "network": "Yulu",
+      "stations": 1
+    },
+    {
+      "network": "Xicom",
+      "stations": 1
+    },
+    {
+      "network": "Westend Mall",
+      "stations": 1
+    },
+    {
+      "network": "Voltran",
+      "stations": 1
+    },
+    {
+      "network": "Trimurti Motors",
+      "stations": 1
+    },
+    {
+      "network": "Tgredco",
+      "stations": 1
+    },
+    {
+      "network": "Terracharge",
+      "stations": 1
+    },
+    {
+      "network": "Tajalli Tech Pvt Ltd",
+      "stations": 1
+    },
+    {
+      "network": "Switch Delhi",
+      "stations": 1
+    },
+    {
+      "network": "Solar Powered Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Shridha",
+      "stations": 1
+    },
+    {
+      "network": "Shri Datt Smart Ev Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Reliable Charge",
+      "stations": 1
+    },
+    {
+      "network": "Rama Chandra Agencies",
+      "stations": 1
+    },
+    {
+      "network": "Prsanna",
+      "stations": 1
+    },
+    {
+      "network": "Procharge",
+      "stations": 1
+    },
+    {
+      "network": "Powerup",
+      "stations": 1
+    },
+    {
+      "network": "Powergrid",
+      "stations": 1
+    },
+    {
+      "network": "Porsche Destination Charging",
+      "stations": 1
+    },
+    {
+      "network": "One Delhi",
+      "stations": 1
+    },
+    {
+      "network": "Ola Hypercharger",
+      "stations": 1
+    },
+    {
+      "network": "Ola Fast Charger",
+      "stations": 1
+    },
+    {
+      "network": "Ola Electric",
+      "stations": 1
+    },
+    {
+      "network": "O S Overseas",
+      "stations": 1
+    },
+    {
+      "network": "Nuego",
+      "stations": 1
+    },
+    {
+      "network": "Nikol Ev",
+      "stations": 1
+    },
+    {
+      "network": "Necell",
+      "stations": 1
+    },
+    {
+      "network": "Nayara",
+      "stations": 1
+    },
+    {
+      "network": "Nashik Municipal Corporation",
+      "stations": 1
+    },
+    {
+      "network": "Minooki Mobility",
+      "stations": 1
+    },
+    {
+      "network": "Mercedes-Benz",
+      "stations": 1
+    },
+    {
+      "network": "Mahavitaran",
+      "stations": 1
+    },
+    {
+      "network": "Laxmi Refreshments",
+      "stations": 1
+    },
+    {
+      "network": "Kptcl",
+      "stations": 1
+    },
+    {
+      "network": "Kazam EV",
+      "stations": 1
+    },
+    {
+      "network": "Infopark",
+      "stations": 1
+    },
+    {
+      "network": "Indofast Energy",
+      "stations": 1
+    },
+    {
+      "network": "Hp Echarge Ev Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Hll Infra Tech Services",
+      "stations": 1
+    },
+    {
+      "network": "Hitachi",
+      "stations": 1
+    },
+    {
+      "network": "Hero Vida",
+      "stations": 1
+    },
+    {
+      "network": "Hero Electric Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Government",
+      "stations": 1
+    },
+    {
+      "network": "Goego Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Goego",
+      "stations": 1
+    },
+    {
+      "network": "Goec Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Go Ego",
+      "stations": 1
+    },
+    {
+      "network": "Freshbus Charging Point",
+      "stations": 1
+    },
+    {
+      "network": "Ezygo",
+      "stations": 1
+    },
+    {
+      "network": "Exiom Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Exicom",
+      "stations": 1
+    },
+    {
+      "network": "Evre",
+      "stations": 1
+    },
+    {
+      "network": "Evok ( Electric Vehicle Owners Kerala )",
+      "stations": 1
+    },
+    {
+      "network": "Evok",
+      "stations": 1
+    },
+    {
+      "network": "Ev Dock",
+      "stations": 1
+    },
+    {
+      "network": "Ev Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Esygo",
+      "stations": 1
+    },
+    {
+      "network": "Electrigo",
+      "stations": 1
+    },
+    {
+      "network": "E Drive Charging Station",
+      "stations": 1
+    },
+    {
+      "network": "Daffodils",
+      "stations": 1
+    },
+    {
+      "network": "Colombierlabs",
+      "stations": 1
+    },
+    {
+      "network": "Chargemod",
+      "stations": 1
+    },
+    {
+      "network": "Cesc",
+      "stations": 1
+    },
+    {
+      "network": "Car Mall",
+      "stations": 1
+    },
+    {
+      "network": "Bses",
+      "stations": 1
+    },
+    {
+      "network": "Bmw",
+      "stations": 1
+    },
+    {
+      "network": "Blu Smart Charge",
+      "stations": 1
+    },
+    {
+      "network": "Battery Smart",
+      "stations": 1
+    },
+    {
+      "network": "Baaz",
+      "stations": 1
+    },
+    {
+      "network": "Afzal",
+      "stations": 1
+    }
+  ]
+}
